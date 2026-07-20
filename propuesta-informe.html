@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDI Consultoría | Control de Stock con Código de Barras y RFID</title>
+<meta name="description" content="Consultoría especializada en implementación de código de barras, QR y RFID para control de stock. Más de 30 años de experiencia en Argentina y Uruguay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B1D1C; --paper:#F7F7F4; --paper-deep:#ECEBE4; --teal:#1F3A3D; --teal-deep:#132628;
+  --stamp:#A6362B; --rule:#D6D3C8; --muted:#5B5952; --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+.serif{font-family:'IBM Plex Serif',serif}
+.mono{font-family:'IBM Plex Mono',monospace}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2.5px solid var(--teal);outline-offset:3px}
+.container{max-width:1120px;margin:0 auto;padding:0 28px}
+.skip-link{position:absolute;top:-100px;left:0;background:var(--stamp);color:var(--white);padding:10px 18px;z-index:10000;font-weight:600;transition:top .2s}
+.skip-link:focus{top:0}
+
+/* Nav */
+.nav{background:var(--paper);border-bottom:1px solid var(--ink);position:sticky;top:0;z-index:1000}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;max-width:1120px;margin:0 auto}
+.logo{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:20px;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+.logo em{font-style:italic;color:var(--muted);font-weight:400;margin-left:8px;font-size:14px}
+.nav-links{display:flex;gap:30px;list-style:none;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links a{text-decoration:none;color:var(--ink);padding-bottom:3px;border-bottom:1px solid transparent;transition:border-color .2s}
+.nav-links a:hover{border-color:var(--stamp)}
+.nav-cta{border:1px solid var(--ink)!important;padding:9px 16px!important;border-radius:0}
+.nav-cta:hover{background:var(--ink);color:var(--paper)!important;border-color:var(--ink)!important}
+.menu-btn{display:none;background:none;border:1px solid var(--ink);font-size:16px;cursor:pointer;padding:6px 12px;font-family:'IBM Plex Mono',monospace}
+.nav-links.open{display:flex!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--paper);padding:6px 28px 24px;border-bottom:1px solid var(--ink);gap:0}
+.nav-links.open li{width:100%;padding:14px 0;border-bottom:1px solid var(--rule)}
+
+/* Hero */
+.hero{padding:64px 0 88px;position:relative;overflow:hidden}
+.hero-num{position:absolute;top:-40px;left:-28px;font-family:'IBM Plex Serif',serif;font-weight:600;font-size:420px;line-height:1;color:var(--paper-deep);z-index:0;user-select:none;letter-spacing:-.04em}
+.hero-inner{position:relative;z-index:1;max-width:760px}
+.hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow .dot{width:7px;height:7px;background:var(--stamp);border-radius:50%;flex-shrink:0}
+.hero h1{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:56px;line-height:1.08;letter-spacing:-.015em;margin-bottom:26px}
+.hero h1 i{font-style:italic;font-weight:400;color:var(--teal)}
+.hero-sub{font-size:18.5px;color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:38px}
+.hero-ctas{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.btn{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14.5px;padding:15px 30px;border-radius:0;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ink);transition:background .2s,color .2s}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:var(--teal);border-color:var(--teal)}
+.btn-text{border:none;padding:0;text-decoration:underline;text-underline-offset:4px;font-weight:500;color:var(--ink)}
+.btn-text:hover{color:var(--teal)}
+
+/* Ledger stat strip */
+.ledger{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--paper)}
+.ledger-row{display:grid;grid-template-columns:repeat(4,1fr)}
+.ledger-cell{padding:22px 28px;border-left:1px solid var(--rule)}
+.ledger-cell:first-child{border-left:none}
+.ledger-cell .n{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:30px;color:var(--teal)}
+.ledger-cell .l{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:4px}
+
+/* Section frame */
+section{padding:88px 0}
+.mark{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.mark::before{content:'§';font-size:15px}
+.section-header{max-width:660px;margin-bottom:56px}
+.section-header h2{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:33px;line-height:1.18;letter-spacing:-.01em;margin-bottom:16px}
+.section-header p{font-size:17px;color:var(--muted);line-height:1.7}
+.rule{border:none;border-top:1px solid var(--ink);margin:0}
+
+/* Quienes somos */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.about-photo{border:1px solid var(--ink)}
+.about-points{list-style:none;margin-top:24px}
+.about-points li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--rule);font-size:14.5px}
+.about-points li:last-child{border-bottom:1px solid var(--rule)}
+.about-points .n{font-family:'IBM Plex Mono',monospace;color:var(--teal);font-weight:600;min-width:24px}
+
+/* Findings list (benefits) — no icon boxes */
+.findings{border-top:1px solid var(--ink)}
+.finding{display:grid;grid-template-columns:90px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--rule)}
+.finding .idx{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--teal);font-weight:600;padding-top:2px}
+.finding h3{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:19px;margin-bottom:6px}
+.finding p{font-size:14.5px;color:var(--muted);line-height:1.65;max-width:640px}
+
+/* Pain points — two column editorial */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.pain-item{padding:30px 32px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.pain-item h3{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:19px;margin-bottom:10px}
+.pain-item p{font-size:14.5px;color:var(--muted);line-height:1.7}
+.pain-item p strong{color:var(--ink)}
+
+/* Integrations */
+.integrations{background:var(--paper-deep)}
+.int-row{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.int-row span{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:12px 22px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);flex:1;text-align:center;min-width:120px}
+
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink)}
+.gallery-grid img{height:240px;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+
+/* Method */
+.method-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+.m-step{display:grid;grid-template-columns:70px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--rule)}
+.m-step:first-child{border-top:1px solid var(--ink)}
+.m-step .num{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;color:var(--teal);padding-top:2px}
+.m-step h4{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:18px;margin-bottom:6px}
+.m-step p{font-size:14.5px;color:var(--muted);line-height:1.6}
+.m-step .dur{display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--teal)}
+.m-step .dur::before{content:'· '}
+.method-visual{border:1px solid var(--ink);padding:30px;position:sticky;top:100px;background:var(--white)}
+.method-visual h3{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:18px;margin-bottom:18px}
+.scope-list{list-style:none}
+.scope-list li{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--rule);font-size:13.5px}
+.scope-list li:last-child{border-bottom:1px solid var(--rule)}
+.scope-list .n{font-family:'IBM Plex Mono',monospace;color:var(--teal);min-width:20px}
+
+/* Services — list not cards */
+.service-row{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--rule);align-items:start}
+.services-list{border-top:1px solid var(--ink)}
+.service-row .thumb{width:56px;height:56px;border:1px solid var(--ink);overflow:hidden;flex-shrink:0}
+.service-row .thumb img{width:100%;height:100%;object-fit:cover}
+.service-row h3{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:19px;margin-bottom:6px}
+.service-row p{font-size:14.5px;color:var(--muted);line-height:1.65;max-width:640px}
+.service-row .tags{margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}
+.service-row .tags span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal);text-transform:uppercase;letter-spacing:.04em}
+
+/* Cases — dossier files */
+.cases{background:var(--paper-deep)}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);border:1px solid var(--ink)}
+.case-file{background:var(--white);padding:30px 32px;position:relative}
+.case-file-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;border-bottom:1px solid var(--rule);padding-bottom:14px}
+.case-file-head .docket{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted)}
+.case-file-head h3{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:21px}
+.case-industry{font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--teal)}
+.case-problem{font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:12px;padding-right:110px}
+.case-solution{font-size:13.5px;line-height:1.65;margin-bottom:60px;padding-right:110px}
+.case-solution strong{color:var(--ink)}
+.stamp{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--stamp);border:1.5px solid var(--stamp);border-radius:50%;width:96px;height:96px;line-height:1.3;text-align:center;padding-top:32px;transform:rotate(-12deg);position:absolute;bottom:20px;right:24px;opacity:.9}
+
+/* Training */
+.price-box{margin-top:24px;padding:22px;border:1px solid var(--ink)}
+.price-box .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.price-box .amt{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:26px}
+.price-box .note{font-size:12px;color:var(--muted);margin-top:8px}
+
+/* Pricing — ledger table style */
+.pricing{background:var(--ink);color:var(--paper)}
+.pricing .mark{color:var(--stamp)}
+.pricing .section-header h2,.pricing .section-header p{color:var(--paper)}
+.pricing .section-header p{color:rgba(247,247,244,.65)}
+.plan-table{border-top:1px solid rgba(247,247,244,.3)}
+.plan-row{display:grid;grid-template-columns:1.3fr .7fr 2fr auto;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid rgba(247,247,244,.3)}
+.plan-row .name{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:20px}
+.plan-row .desc{font-size:13.5px;color:rgba(247,247,244,.6);margin-top:4px}
+.plan-row .price{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600}
+.plan-row .price .per{font-size:12px;font-weight:400;color:rgba(247,247,244,.55)}
+.plan-row .feats{font-size:13px;color:rgba(247,247,244,.75);line-height:1.9}
+.plan-row .featured-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--stamp);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+.plan-cta{border:1px solid var(--paper);color:var(--paper);padding:12px 20px;font-family:'IBM Plex Sans';font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;display:inline-block;transition:background .2s,color .2s}
+.plan-cta:hover{background:var(--paper);color:var(--ink)}
+
+/* Trust */
+.trust{padding:56px 0;text-align:center}
+.client-row{display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);margin-top:24px}
+.client-row span{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:14px 26px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);color:var(--muted)}
+
+/* CTA */
+.cta-section{background:var(--teal);color:var(--paper);padding:96px 0;text-align:center}
+.cta-section h2{font-family:'IBM Plex Serif',serif;font-weight:600;color:var(--paper);font-size:36px;margin-bottom:16px;letter-spacing:-.01em}
+.cta-section p{font-size:17px;color:rgba(247,247,244,.75);max-width:520px;margin:0 auto 34px;line-height:1.65}
+.cta-form{display:flex;gap:0;justify-content:center;max-width:460px;margin:0 auto 22px;border:1px solid rgba(247,247,244,.5)}
+.cta-form input{flex:1;min-width:0;padding:16px 18px;border:none;background:transparent;color:var(--paper);font-size:15px;outline:none;font-family:'IBM Plex Sans'}
+.cta-form input::placeholder{color:rgba(247,247,244,.5)}
+.cta-form button{border:none;border-left:1px solid rgba(247,247,244,.5);background:var(--stamp);color:var(--white);padding:0 24px;font-weight:600;font-size:14px;cursor:pointer;font-family:'IBM Plex Sans'}
+.cta-note{font-size:13px;color:rgba(247,247,244,.55);font-family:'IBM Plex Mono',monospace}
+.cta-note a{color:rgba(247,247,244,.85);text-decoration:none}
+
+/* Footer */
+.footer{background:var(--paper);color:var(--muted);padding:56px 0 26px;font-size:14px;border-top:1px solid var(--ink)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer .logo{color:var(--ink)}
+.footer-brand p{line-height:1.8;max-width:300px;margin-top:14px;font-size:13.5px}
+.footer-col h4{color:var(--ink);font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:9px;font-size:13.5px}
+.footer-col a{color:var(--muted);text-decoration:none}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{border-top:1px solid var(--rule);padding-top:20px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+
+.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:9999}
+.whatsapp-float svg{width:27px;height:27px;fill:white}
+
+@media(max-width:1024px){
+  .hero h1{font-size:44px}
+  .hero-num{font-size:280px}
+  .ledger-row{grid-template-columns:repeat(2,1fr)}
+  .section-header h2{font-size:28px}
+  .plan-row{grid-template-columns:1fr;gap:10px}
+}
+@media(max-width:860px){
+  .about-grid,.method-grid{grid-template-columns:1fr}
+  .method-visual{position:static}
+  .case-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  .pain-grid,.gallery-grid{grid-template-columns:1fr}
+  .pain-item{border-right:1px solid var(--ink)}
+  section{padding:60px 0}
+  .hero{padding:44px 0 56px}
+  .hero-num{display:none}
+  .hero h1{font-size:34px}
+  .finding{grid-template-columns:1fr;gap:6px}
+  .cta-form{flex-direction:column}
+  .cta-form button{border-left:none;border-top:1px solid rgba(247,247,244,.5);padding:14px}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+<nav class="nav" role="navigation" aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href="#" class="logo">CDI Consultoría<em>desde 1992</em></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#beneficios">Beneficios</a></li>
+      <li><a href="#metodologia">Metodología</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#casos">Casos</a></li>
+      <li><a href="#contacto" class="nav-cta">Diagnóstico</a></li>
+    </ul>
+    <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false">MENÚ</button>
+  </div>
+</nav>
+
+<main id="main">
+<section class="hero" aria-label="Introducción">
+  <span class="hero-num" aria-hidden="true">30</span>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><span class="dot"></span> Consultoría especializada en control de stock — Argentina y Uruguay</div>
+      <h1>Treinta años mirando <i>depósitos</i> antes de mirar sistemas.</h1>
+      <p class="hero-sub">Implementamos código de barras, QR y RFID en ingresos, ubicaciones, picking y egresos. No vendemos lectores: diseñamos el control alrededor de cómo tu mercadería se mueve de verdad.</p>
+      <div class="hero-ctas">
+        <a href="#contacto" class="btn btn-primary">Solicitar diagnóstico gratuito</a>
+        <a href="#metodologia" class="btn btn-text">Ver metodología →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ledger">
+  <div class="container">
+    <div class="ledger-row">
+      <div class="ledger-cell"><div class="n">1992</div><div class="l">Año de fundación</div></div>
+      <div class="ledger-cell"><div class="n">2</div><div class="l">Países — AR y UY</div></div>
+      <div class="ledger-cell"><div class="n">6</div><div class="l">Rubros atendidos</div></div>
+      <div class="ledger-cell"><div class="n">99.9%</div><div class="l">Precisión de inventario</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <img class="about-photo" src="assets/foto-scanner-rack.png" alt="Operador de depósito escaneando una ubicación de rack" loading="lazy">
+      <div>
+        <div class="mark">Quiénes somos</div>
+        <h2 class="serif" style="font-size:30px;font-weight:600;letter-spacing:-.01em;margin-bottom:18px;line-height:1.2">Consultores de depósito, no vendedores de hardware</h2>
+        <p style="color:var(--muted);font-size:16px;line-height:1.75">Desde 1992 acompañamos a empresas argentinas y uruguayas —industria, alimentos, automotriz, e-commerce— a dejar de perder mercadería. Llegamos a entender cómo se mueve tu mercadería antes de proponer una sola etiqueta. Nos quedamos durante la implementación y después, hasta que el depósito funcione solo.</p>
+        <ul class="about-points">
+          <li><span class="n">01</span> Consultores senior en cada proyecto, no juniors aprendiendo con tu operación</li>
+          <li><span class="n">02</span> Diseño a medida de tu flujo real, sin modelos rígidos prearmados</li>
+          <li><span class="n">03</span> Integración con el ERP/WMS que ya tenés</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="beneficios" style="background:var(--paper-deep)">
+  <div class="container">
+    <div class="section-header">
+      <div class="mark">Beneficios</div>
+      <h2>Ocho razones por las que catalogar tu stock cambia el resultado</h2>
+      <p>No son promesas de folleto: son los efectos que medimos, relevamiento tras relevamiento, cuando el código de barras reemplaza al papel.</p>
+    </div>
+    <div class="findings">
+      <div class="finding"><div class="idx">01</div><div><h3>Eficiencia</h3><p>Menos tiempo de proceso y mayor eficiencia operativa en cada movimiento de mercadería.</p></div></div>
+      <div class="finding"><div class="idx">02</div><div><h3>Precisión</h3><p>Disminución significativa de errores humanos en ingresos, egresos e inventarios.</p></div></div>
+      <div class="finding"><div class="idx">03</div><div><h3>Gestión de inventario</h3><p>Reducción de inventarios físicos paralizantes y mejor control en tiempo real.</p></div></div>
+      <div class="finding"><div class="idx">04</div><div><h3>Avance tecnológico</h3><p>Adopción de tecnología avanzada en operaciones logísticas y de depósito.</p></div></div>
+      <div class="finding"><div class="idx">05</div><div><h3>Trazabilidad</h3><p>Información completa para seguimiento y toma de decisiones basada en datos reales.</p></div></div>
+      <div class="finding"><div class="idx">06</div><div><h3>Imagen corporativa</h3><p>Mejora de la imagen interna y externa de la empresa ante clientes y proveedores.</p></div></div>
+      <div class="finding"><div class="idx">07</div><div><h3>Control y auditoría</h3><p>Facilita auditorías internas y controles de inventario con respaldo documental.</p></div></div>
+      <div class="finding"><div class="idx">08</div><div><h3>Reducción de errores</h3><p>Menos pérdidas y errores en las operaciones diarias de depósito.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="procesos">
+  <div class="container">
+    <div class="section-header">
+      <div class="mark">¿Te suena familiar?</div>
+      <h2>Los problemas de stock que resolvemos todos los días</h2>
+      <p>Si tu depósito depende de Excel, papel o del "conocimiento de Juan", son los mismos problemas que detectamos en cada relevamiento.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-item"><h3>Inventarios que nunca cuadran</h3><p>Cerrás el depósito 3 días y al mes siguiente los números ya no dan. Como le pasaba a <strong>Adama</strong> antes de los controles cíclicos.</p></div>
+      <div class="pain-item"><h3>Picking con errores constantes</h3><p><strong>San Justo Iluminación</strong> movía 1.200 cajas diarias sin verificación, con listas impresas y memoria.</p></div>
+      <div class="pain-item"><h3>Ingresos y egresos lentos</h3><p>Un camión espera 2 horas para descargar porque todo se anota a mano.</p></div>
+      <div class="pain-item"><h3>Dependencia de personas clave</h3><p>Si se va el que "sabe dónde está todo", se cae la operación.</p></div>
+      <div class="pain-item"><h3>El ERP propone un modelo rígido</h3><p>Ubicaciones fijas por celda que no contemplan el escaneo físico, como le pasó a <strong>Bustin</strong>.</p></div>
+      <div class="pain-item"><h3>Stock en negativo</h3><p>Faltan unidades, sobran otras, hay productos vencidos escondidos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="integrations">
+  <div class="container">
+    <div class="mark">Integramos con tu ERP o WMS existente</div>
+    <div class="int-row">
+      <span>SAP</span><span>Tango</span><span>Flexxus</span><span>Presea</span><span>Neural Soft</span><span>Adonix</span><span>Keops</span><span>Decano</span><span>Sistemas propios</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0">
+  <div class="gallery-grid">
+    <img src="assets/galeria-ubicacion.png" alt="Escaneo de ubicación en rack" loading="lazy">
+    <img src="assets/galeria-estanteria.png" alt="Control de estantería en depósito" loading="lazy">
+    <img src="assets/galeria-tablet.png" alt="Reportes en tiempo real en tablet" loading="lazy">
+  </div>
+</section>
+
+<section id="metodologia">
+  <div class="container">
+    <div class="section-header">
+      <div class="mark">Metodología</div>
+      <h2>De diagnóstico a operación en cinco pasos</h2>
+      <p>No vendemos equipos y nos vamos. Nos quedamos hasta que tu depósito funcione solo.</p>
+    </div>
+    <div class="method-grid">
+      <div>
+        <div class="m-step"><div class="num">01</div><div><h4>Relevamiento y diagnóstico</h4><p>Mapeamos los flujos actuales, identificamos fugas y cuellos de botella. Entregamos un informe con hallazgos priorizados.</p><span class="dur">2–4 semanas</span></div></div>
+        <div class="m-step"><div class="num">02</div><div><h4>Diseño de flujos y codificación</h4><p>Definimos la codificación de barras/QR/RFID para cada SKU, ubicación y lote.</p><span class="dur">3–4 semanas</span></div></div>
+        <div class="m-step"><div class="num">03</div><div><h4>Implementación tecnológica</h4><p>Configuramos lectores, colectores, impresoras y software. Piloto antes de escalar.</p><span class="dur">4–8 semanas</span></div></div>
+        <div class="m-step"><div class="num">04</div><div><h4>Capacitación del personal</h4><p>Talleres prácticos, manual de procedimientos y certificación de operadores.</p><span class="dur">2–3 semanas</span></div></div>
+        <div class="m-step"><div class="num">05</div><div><h4>Acompañamiento y optimización</h4><p>Seguimiento mensual, ajustes de procesos, inventarios cíclicos.</p><span class="dur">6–12 meses (opcional)</span></div></div>
+      </div>
+      <aside class="method-visual">
+        <h3>Alcance de la primera etapa</h3>
+        <ul class="scope-list">
+          <li><span class="n">·</span> Planificación del proyecto y cronograma</li>
+          <li><span class="n">·</span> Relevamiento inicial de procesos</li>
+          <li><span class="n">·</span> Identificación de oportunidades de mejora</li>
+          <li><span class="n">·</span> Análisis de recursos (hardware, software, RRHH)</li>
+          <li><span class="n">·</span> Análisis de presupuesto necesario</li>
+          <li><span class="n">·</span> Plan de acción alineado a objetivos</li>
+          <li><span class="n">·</span> Entrega de informe ejecutivo</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" style="background:var(--paper-deep)">
+  <div class="container">
+    <div class="section-header">
+      <div class="mark">Servicios especializados</div>
+      <h2>Consultoría en cada punto del flujo de mercadería</h2>
+      <p>No importa en qué etapa estés: desde el primer diagnóstico hasta la optimización de un sistema existente.</p>
+    </div>
+    <div class="services-list">
+      <div class="service-row"><div class="thumb"><img src="assets/icon-recepcion.png" alt="" loading="lazy"></div><div><h3>Control de Ingresos</h3><p>Verificación por código de barras en recepción, comparada contra orden de compra. Como en <strong>Repicky</strong> con integración a Adonix.</p><div class="tags"><span>Recepción</span><span>Verificación OC</span><span>Alertas</span></div></div></div>
+      <div class="service-row"><div class="thumb"><img src="assets/icon-ubicaciones.png" alt="" loading="lazy"></div><div><h3>Ubicaciones en Depósito</h3><p>Cada pallet y caja tiene su coordenada exacta escaneable. Buscás un SKU y sabés dónde está en segundos.</p><div class="tags"><span>Codificación rack</span><span>Ubicación dinámica</span><span>Mapa digital</span></div></div></div>
+      <div class="service-row"><div class="thumb"><img src="assets/icon-picking.png" alt="" loading="lazy"></div><div><h3>Picking y Preparación</h3><p>Picking por zona, onda, pedido o batch. <strong>San Justo Iluminación</strong> pasó de listas impresas a preparado digital.</p><div class="tags"><span>Picking por zona</span><span>Verificación</span><span>Wave picking</span></div></div></div>
+      <div class="service-row"><div class="thumb"><img src="assets/icon-despachos.png" alt="" loading="lazy"></div><div><h3>Control de Egresos</h3><p>Verificación final contra remito. Trazabilidad completa: quién preparó, verificó y despachó.</p><div class="tags"><span>Verificación remito</span><span>Trazabilidad</span><span>Firma digital</span></div></div></div>
+      <div class="service-row"><div class="thumb"><img src="assets/icon-inventario.png" alt="" loading="lazy"></div><div><h3>Inventarios y Auditoría</h3><p>Inventarios cíclicos con colectores, 99.9% de precisión. Como con <strong>Toyota Tsusho</strong>.</p><div class="tags"><span>Inventario cíclico</span><span>Colectores</span><span>99.9% precisión</span></div></div></div>
+      <div class="service-row"><div class="thumb" style="display:flex;align-items:center;justify-content:center;background:var(--paper)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.7"><path d="M20 12.5 12.5 20 3 10.5V3h7.5L20 12.5Z"/><circle cx="7.5" cy="7.5" r="1.5" fill="var(--teal)" stroke="none"/></svg></div><div><h3>Etiquetado y Codificación</h3><p>Etiquetas para cada necesidad: papel térmico, sintético, metales, textiles, frío. GS1 compliant.</p><div class="tags"><span>Etiquetas</span><span>RFID</span><span>GS1</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="casos" class="cases">
+  <div class="container">
+    <div class="section-header">
+      <div class="mark">Clientes que ya controlan su stock</div>
+      <h2>Casos de éxito: de la problemática a la solución</h2>
+      <p>Cada cliente tiene una operación diferente. No vendemos un paquete estándar: diseñamos la solución para tu realidad.</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-file">
+        <div class="case-file-head"><div><span class="case-industry">Distribución</span><h3>Bustin</h3></div><span class="docket">EXP. Nº 01</span></div>
+        <p class="case-problem">Sistema Presea rígido, sin lectores de código de barras. Ubicaciones fijas con alta carga de mantenimiento.</p>
+        <p class="case-solution"><strong>Solución:</strong> ubicaciones dinámicas por zonas y clases de producto. Piloto de validación antes de escalar.</p>
+        <span class="stamp">PILOTO<br>EN CURSO</span>
+      </div>
+      <div class="case-file">
+        <div class="case-file-head"><div><span class="case-industry">Manufactura</span><h3>San Justo Iluminación</h3></div><span class="docket">EXP. Nº 02</span></div>
+        <p class="case-problem">3.900 SKUs, 1.200 cajas diarias, stock en negativo, sin ubicaciones codificadas.</p>
+        <p class="case-solution"><strong>Solución:</strong> codificación de semielaborados, mapeo por sectores, control de acceso.</p>
+        <span class="stamp">MAPEO<br>COMPLETO</span>
+      </div>
+      <div class="case-file">
+        <div class="case-file-head"><div><span class="case-industry">Alimentos</span><h3>Adama</h3></div><span class="docket">EXP. Nº 03</span></div>
+        <p class="case-problem">500 ton/mes, sin ubicaciones específicas, inventarios cancelados por inviables.</p>
+        <p class="case-solution"><strong>Solución:</strong> control por lotes, codificación de ubicaciones, inventarios cíclicos.</p>
+        <span class="stamp">ACTIVO<br>Y ESTABLE</span>
+      </div>
+      <div class="case-file">
+        <div class="case-file-head"><div><span class="case-industry">Automotriz</span><h3>Toyota Tsusho Argentina</h3></div><span class="docket">EXP. Nº 04</span></div>
+        <p class="case-problem">Inventarios en proveedores dispersos, sin trazabilidad de piezas, conteo manual en papel.</p>
+        <p class="case-solution"><strong>Solución:</strong> etiquetado con QR de TTA, planillas digitales con firma de partes.</p>
+        <span class="stamp">TRAZABILIDAD<br>COMPLETA</span>
+      </div>
+      <div class="case-file">
+        <div class="case-file-head"><div><span class="case-industry">E-commerce</span><h3>Mercado Libre</h3></div><span class="docket">EXP. Nº 05</span></div>
+        <p class="case-problem">Activos fijos dispersos en múltiples locations, sin conciliación centralizada.</p>
+        <p class="case-solution"><strong>Solución:</strong> cronograma de relevamiento, etiquetado de equipos, conciliación oficial.</p>
+        <span class="stamp">RELEVAMIENTO<br>SISTEMÁTICO</span>
+      </div>
+      <div class="case-file">
+        <div class="case-file-head"><div><span class="case-industry">Mayorista</span><h3>A. Sabbatini e Hijos</h3></div><span class="docket">EXP. Nº 06</span></div>
+        <p class="case-problem">Productos sin identificación unificada, sin control en expedición.</p>
+        <p class="case-solution"><strong>Solución:</strong> etiquetado con descripción + código + serie, integración con Keops.</p>
+        <span class="stamp">INTEGRACIÓN<br>KEOPS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capacitacion">
+  <div class="container">
+    <div class="section-header">
+      <div class="mark">Capacitación</div>
+      <h2>Talleres prácticos para tu equipo</h2>
+      <p>La tecnología sola no sirve. Capacitamos operadores, supervisores y responsables de sistemas.</p>
+    </div>
+    <div class="method-grid">
+      <div>
+        <div class="m-step" style="border-top:1px solid var(--ink)"><div class="num">4 hs</div><div><h4>Código de barras como herramienta de gestión</h4><p>Introducción a la tecnología, tipos de códigos, lectores, impresoras, casos prácticos del rubro.</p></div></div>
+        <div class="m-step"><div class="num">2–3 d.</div><div><h4>Capacitación en campo: operación de depósito</h4><p>Entrenamiento práctico con tus equipos. Cada operador certificado. Manual de SOPs entregado.</p></div></div>
+        <div class="m-step"><div class="num">1 día</div><div><h4>Para responsables de sistemas</h4><p>Configuración de equipos, integración con ERP, mantenimiento preventivo.</p></div></div>
+      </div>
+      <aside class="method-visual">
+        <h3>Contenido del taller</h3>
+        <ul class="scope-list">
+          <li><span class="n">·</span> Introducción al código de barras</li>
+          <li><span class="n">·</span> Herramienta de gestión empresarial</li>
+          <li><span class="n">·</span> Tecnologías existentes (barras, QR, RFID)</li>
+          <li><span class="n">·</span> Implementación paso a paso</li>
+          <li><span class="n">·</span> Resumen general y preguntas</li>
+        </ul>
+        <div class="price-box">
+          <div class="lbl">Inversión del taller</div>
+          <div class="amt">$28.000 <span style="font-size:14px;font-family:'IBM Plex Sans';font-weight:400">+ IVA</span></div>
+          <div class="note">4 horas · 2–3 consultores senior. Viáticos no incluidos fuera de CABA.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="precios">
+  <div class="container">
+    <div class="section-header">
+      <div class="mark">Inversión</div>
+      <h2>Planes de consultoría flexibles</h2>
+      <p>Escalamos según tus necesidades, desde el diagnóstico inicial hasta el acompañamiento a largo plazo.</p>
+    </div>
+    <div class="plan-table">
+      <div class="plan-row">
+        <div><div class="name">Primera etapa</div><div class="desc">Relevamiento, diagnóstico y plan de acción</div></div>
+        <div class="price">USD 4.680<span class="per">/mes</span></div>
+        <div class="feats">2 reuniones presenciales/mes · Informe ejecutivo · Duración 5–6 meses</div>
+        <a href="#contacto" class="plan-cta">Solicitar propuesta</a>
+      </div>
+      <div class="plan-row">
+        <div><span class="featured-tag">Recomendado</span><div class="name">Segunda etapa</div><div class="desc">Implementación, acompañamiento y optimización</div></div>
+        <div class="price">USD 3.800<span class="per">/mes</span></div>
+        <div class="feats">Capacitación del personal · Auditoría de procesos · Duración 6–8 meses</div>
+        <a href="#contacto" class="plan-cta">Solicitar propuesta</a>
+      </div>
+    </div>
+    <p class="mono" style="margin-top:28px;font-size:12px;color:rgba(247,247,244,.5)">* Tiempos estimados según pliego. Valores no incluyen IVA — dólar oficial BNA.</p>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="container">
+    <div class="mark" style="justify-content:center">Empresas que ya controlan su stock con nosotros</div>
+    <div class="client-row">
+      <span>Bardahl</span><span>Cantore S.A.</span><span>CHECA</span><span>McDonald's</span><span>ENARSA</span><span>Escandinavia</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contacto">
+  <div class="container">
+    <h2>¿Listo para dejar de perder mercadería?</h2>
+    <p>Agendá una consulta gratuita de 30 minutos. Analizamos tu situación actual y te mostramos cómo implementar código de barras en tu depósito.</p>
+    <form class="cta-form" action="#" method="POST" onsubmit="event.preventDefault();this.querySelector('button').textContent='Recibido ✓';">
+      <input type="email" name="email" placeholder="Tu email corporativo" required aria-label="Email corporativo">
+      <button type="submit">Agendar</button>
+    </form>
+    <p class="cta-note">+54 11 5895-6886 · info@cdinet.com.ar · Pizarro 5201, CABA</p>
+  </div>
+</section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">CDI Consultoría</a>
+        <p>Especialistas en código de barras, QR y RFID para control de stock. Más de 30 años en Argentina y Uruguay.</p>
+      </div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#servicios">Ingresos</a></li><li><a href="#servicios">Ubicaciones</a></li><li><a href="#servicios">Picking</a></li><li><a href="#servicios">Egresos</a></li><li><a href="#servicios">Inventarios</a></li></ul></div>
+      <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#metodologia">Metodología</a></li><li><a href="#casos">Casos de éxito</a></li><li><a href="#nosotros">Nosotros</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li>Pizarro 5201, CABA</li><li><a href="tel:+541158956886">+54 11 5895-6886</a></li><li><a href="mailto:info@cdinet.com.ar">info@cdinet.com.ar</a></li><li style="margin-top:10px;color:var(--ink)">Uruguay</li><li>Sarandí 256, Montevideo</li><li><a href="tel:+59897342220">+59 8973-42220</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 CDI Consultoría</span>
+      <span>Una empresa <a href="https://sznet.com.ar" target="_blank" style="color:var(--muted)">SZNET</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/541158956886?text=Hola,%20quiero%20solicitar%20un%20diagnóstico%20gratuito%20para%20mi%20depósito" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73s.68-1.93.93-2.2c.22-.24.5-.3.66-.3h.5c.16 0 .38-.03.58.44.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.44-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.27.7 1.16 1.5 1.88 1.03.92 1.9 1.21 2.17 1.35.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.13.45.2.51.31.07.13.07.71-.15 1.33z"/></svg>
+</a>
+
+<script>
+const menuBtn=document.getElementById('menuBtn');const navLinksEl=document.getElementById('navLinks');
+menuBtn.addEventListener('click',()=>{const open=navLinksEl.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open)});
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'})}navLinksEl.classList.remove('open');menuBtn.setAttribute('aria-expanded',false)})});
+</script>
+</body>
+</html>
