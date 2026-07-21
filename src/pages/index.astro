@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ConsoleLog from '../components/ConsoleLog.astro';
+import DiagnosticPanel from '../components/DiagnosticPanel.astro';
 import Faq from '../components/Faq.astro';
 import { faqSchema } from '../lib/schema.js';
 
@@ -22,15 +22,15 @@ const faqs = [
     <div class="container">
       <div class="hero-grid">
         <div>
-          <div class="hero-eyebrow"><span class="dot"></span> CONSULTORÍA DE LOGÍSTICA, DEPÓSITOS E INVENTARIOS · 30 AÑOS</div>
-          <h1>Consultoría en Logística, Depósitos e Inventarios</h1>
-          <p class="hero-sub">Más de 30 años ayudando a empresas a ordenar depósitos, mejorar inventarios e implementar tecnologías como código de barras y RFID. El código de barras y el RFID son herramientas de esta consultoría — el resultado es tu operación bajo control.</p>
+          <div class="hero-eyebrow"><span class="dot"></span> CONSULTORÍA EN LOGÍSTICA Y DEPÓSITOS · 30 AÑOS</div>
+          <h1>¿Tu inventario nunca cierra?</h1>
+          <p class="hero-sub">Ayudamos a empresas a recuperar el control de sus depósitos: menos diferencias de stock, menos tiempo perdido buscando mercadería, procesos que se sostienen sin depender de una sola persona. Consultoría en logística, depósitos e inventarios desde 1992 — el código de barras y el RFID son herramientas que aplicamos cuando el diagnóstico lo indica, no el punto de partida.</p>
           <div class="hero-ctas">
-            <a href="/contacto" class="btn btn-primary">Solicitar diagnóstico gratuito</a>
+            <a href="/contacto" class="btn btn-primary">Solicitar un diagnóstico</a>
             <a href="/metodologia" class="btn btn-secondary">Ver metodología</a>
           </div>
         </div>
-        <ConsoleLog />
+        <DiagnosticPanel />
       </div>
     </div>
   </section>
@@ -52,14 +52,30 @@ const faqs = [
         <img class="about-photo" src="/assets/foto-scanner-rack.png" alt="Consultor relevando un depósito" loading="lazy">
         <div>
           <div class="tag">Quiénes somos</div>
-          <h2 class="display" style="font-size:28px;font-weight:700;letter-spacing:-.01em;margin-bottom:18px;line-height:1.25">Consultores de depósito, no vendedores de hardware</h2>
-          <p style="color:var(--muted);font-size:15.5px;line-height:1.75">Desde 1992 ofrecemos <strong style="color:var(--text)">consultoría logística</strong>, <strong style="color:var(--text)">consultoría de depósitos</strong> y <strong style="color:var(--text)">consultoría de inventarios</strong> a empresas argentinas y uruguayas —industria, alimentos, automotriz, e-commerce— para que dejen de perder mercadería. Llegamos a entender cómo se mueve tu mercadería antes de proponer una sola etiqueta. El código de barras y el RFID son la herramienta; el objetivo es que tu operación quede bajo control.</p>
+          <h2 class="display" style="font-size:28px;font-weight:700;letter-spacing:-.01em;margin-bottom:18px;line-height:1.25">Recuperamos el control de tu depósito</h2>
+          <p style="color:var(--muted);font-size:15.5px;line-height:1.75">Desde 1992 ofrecemos <strong style="color:var(--text)">consultoría logística</strong>, <strong style="color:var(--text)">consultoría de depósitos</strong> y <strong style="color:var(--text)">consultoría de inventarios</strong> a empresas argentinas y uruguayas —industria, alimentos, automotriz, e-commerce— para que dejen de perder mercadería. Empezamos por entender por qué se perdió el control, antes de proponer un solo cambio. El código de barras y el RFID son la herramienta; el objetivo es que tu operación quede bajo control.</p>
           <ul class="about-points">
             <li><span class="ok">✓</span> Consultores senior en cada proyecto, no juniors aprendiendo con tu operación</li>
             <li><span class="ok">✓</span> Diseño a medida de tu flujo real, sin modelos rígidos prearmados</li>
             <li><span class="ok">✓</span> Integración con el ERP/WMS que ya tenés</li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Autoridad y experiencia">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">Por qué CDI</div>
+        <h2>Más de 30 años de especialización, no un servicio genérico</h2>
+        <p>No somos un integrador de tecnología que también hace consultoría. La consultoría es el servicio; la tecnología es el medio.</p>
+      </div>
+      <div class="panel-grid g4">
+        <div class="p-card"><h3 style="font-size:16.5px">30+ años</h3><p>De especialización exclusiva en logística, depósitos e inventarios — no un área secundaria de otra empresa.</p></div>
+        <div class="p-card"><h3 style="font-size:16.5px">6 industrias</h3><p>Manufactura, alimentos, automotriz, e-commerce, distribución y mayoristas, con procesos muy distintos entre sí.</p></div>
+        <div class="p-card"><h3 style="font-size:16.5px">2 países</h3><p>Operación activa y oficinas propias en Argentina y Uruguay, no un representante ocasional.</p></div>
+        <div class="p-card"><h3 style="font-size:16.5px">Consultores senior</h3><p>Cada proyecto lo lleva un consultor senior, no un junior aprendiendo con tu operación.</p></div>
       </div>
     </div>
   </section>
@@ -136,14 +152,14 @@ const faqs = [
   <section style="background:var(--panel-2)">
     <div class="container">
       <div class="section-header">
-        <div class="tag">Metodología</div>
-        <h2>De diagnóstico a operación en cinco pasos</h2>
-        <p>No vendemos equipos y nos vamos. Nos quedamos hasta que tu depósito funcione solo.</p>
+        <div class="tag">Metodología CDI</div>
+        <h2>De la causa raíz a un depósito bajo control, en 7 etapas</h2>
+        <p>No llegamos a implementar tecnología. Llegamos a entender por qué se perdió el control, y recién después diseñamos la mejora.</p>
       </div>
       <div class="related-grid">
-        <div class="related-card"><div class="rt">01–02 · Diagnóstico y diseño</div><div class="rd">Relevamiento de flujos y codificación a medida. 5–8 semanas.</div></div>
-        <div class="related-card"><div class="rt">03–04 · Implementación</div><div class="rd">Lectores, colectores y capacitación del equipo. 6–11 semanas.</div></div>
-        <div class="related-card"><div class="rt">05 · Acompañamiento</div><div class="rd">Seguimiento e inventarios cíclicos. 6–12 meses opcional.</div></div>
+        <div class="related-card"><div class="rt">01–03 · Diagnóstico y causas</div><div class="rd">Relevamiento, auditoría operativa e identificación de causas raíz. 4–7 semanas.</div></div>
+        <div class="related-card"><div class="rt">04–05 · Diseño e implementación</div><div class="rd">Rediseño del flujo y puesta en marcha, con piloto antes de escalar. 7–12 semanas.</div></div>
+        <div class="related-card"><div class="rt">06–07 · Capacitación y seguimiento</div><div class="rd">Certificación del equipo y acompañamiento continuo. 6–12 meses opcional.</div></div>
       </div>
       <p style="margin-top:20px"><a href="/metodologia" style="color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:13px">Ver la metodología completa →</a></p>
     </div>

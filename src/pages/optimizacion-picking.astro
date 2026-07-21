@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import KpiRow from '../components/KpiRow.astro';
+import Faq from '../components/Faq.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema, serviceSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Cómo reduzco errores de picking?', a: 'Con verificación por escaneo en cada paso —código de barras o QR contra el pedido— en vez de listas impresas y memoria. Es uno de los cambios con impacto más rápido y medible de toda la consultoría.' },
+  { q: '¿Qué método de picking conviene para mi operación?', a: 'Depende del volumen y la variedad de pedidos: por zona, por onda (wave), por pedido individual o por lote (batch). Lo definimos en el diagnóstico según tu mix real de pedidos, no con una fórmula genérica.' },
+  { q: '¿Se puede optimizar el picking sin cambiar de sistema?', a: 'En la mayoría de los casos sí. El problema suele estar en el método de picking y en la falta de verificación, no en el sistema en sí.' },
+];
+---
+<Layout
+  title="Optimización de Picking | CDI Consultoría"
+  description="Optimización de picking: reducimos errores y tiempos de preparación de pedidos con verificación por escaneo, sin depender de listas impresas y memoria."
+  keywords="optimización de picking, errores de picking, picking por zona, wave picking, picking por lote"
+  jsonLd={[faqSchema(faqs), serviceSchema({ name: 'Optimización de Picking', description: 'Rediseño del proceso de picking con verificación por escaneo para reducir errores y tiempos de preparación de pedidos.' })]}
+>
+  <Breadcrumb current="Optimización de Picking" />
+  <section class="hero" style="padding:48px 0 70px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> OPTIMIZACIÓN DE PICKING</div>
+      <h1 style="font-size:44px;max-width:760px">¿El cliente recibe lo que no pidió?</h1>
+      <p class="hero-sub" style="max-width:640px">Devoluciones, reclamos, costos de reenvío. Casi siempre el origen es el mismo: picking con listas impresas y memoria, sin verificación por escaneo en cada paso.</p>
+      <div class="hero-ctas"><a href="#contacto" class="btn btn-primary">Solicitar un diagnóstico</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">Problemas que resolvemos</div>
+        <h2>"Los errores de picking nos están costando caro"</h2>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><h3>Sin verificación en el momento</h3><p>El operador confía en su memoria; el error se descubre recién cuando el cliente reclama.</p></div>
+        <div class="p-card warn"><h3>Un solo método para todo tipo de pedido</h3><p>Se usa el mismo proceso para un pedido de 2 ítems y uno de 200, perdiendo eficiencia en ambos extremos.</p></div>
+        <div class="p-card warn"><h3>Tiempos de preparación impredecibles</h3><p>Sin datos de tiempos por operador o por zona, es imposible planificar la dotación necesaria.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Resultado esperable</div><h2>Lo que cambia después de la consultoría</h2></div>
+      <KpiRow items={[{n:'-40%',l:'Tiempo de picking'},{n:'Verificado',l:'Cada paso por escaneo'},{n:'-90%',l:'Errores de preparación'}]} />
+      <div class="case-card" style="max-width:640px">
+        <div class="case-head"><div><span class="case-industry">Manufactura</span><h3>San Justo Iluminación</h3></div><span class="case-status">Preparado digital</span></div>
+        <p class="case-problem">Movía 1.200 cajas diarias sin verificación, con listas impresas y memoria.</p>
+        <p class="case-solution"><strong>Solución:</strong> reportes con código de barras para pickeo por orden de producción.</p>
+        <div class="case-result"><a href="/casos-de-exito/san-justo-iluminacion" style="color:var(--blue)">→ Ver caso completo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Preguntas frecuentes</div><h2>Sobre optimización de picking</h2></div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría relacionada</div><h2>Otras líneas de trabajo</h2></div>
+      <RelatedServices exclude="/optimizacion-picking" />
+    </div>
+  </section>
+
+  <CtaBanner heading="¿Los errores de picking te están costando clientes?" />
+</Layout>

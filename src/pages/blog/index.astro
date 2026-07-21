@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+const categories = [
+  { slug: 'inventarios', t: 'Inventarios', d: 'Control de stock, exactitud y auditoría.' },
+  { slug: 'depositos', t: 'Depósitos', d: 'Organización, layout y flujo físico.' },
+  { slug: 'wms', t: 'WMS', d: 'Sistemas de gestión de almacenes.' },
+  { slug: 'rfid', t: 'RFID', d: 'Trazabilidad automática de mercadería.' },
+  { slug: 'codigo-de-barras', t: 'Código de Barras', d: 'La base de todo control de inventario.' },
+  { slug: 'picking', t: 'Picking', d: 'Preparación de pedidos sin errores.' },
+  { slug: 'layout', t: 'Layout', d: 'Diseño físico del espacio de depósito.' },
+  { slug: 'lean-warehouse', t: 'Lean Warehouse', d: 'Eliminar desperdicio en la operación.' },
+  { slug: 'supply-chain', t: 'Supply Chain', d: 'La cadena de suministro completa.' },
+  { slug: 'exactitud-de-inventario', t: 'Exactitud de Inventario', d: 'Cómo medirla y sostenerla.' },
+];
+---
+<Layout
+  title="Blog | CDI Consultoría"
+  description="Artículos técnicos sobre consultoría de depósitos, inventarios, WMS, RFID, código de barras, picking, layout y supply chain."
+  keywords="blog logística, blog consultoría de depósitos, artículos control de stock"
+>
+  <Breadcrumb current="Blog" section={null} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <h1 style="font-size:40px;max-width:760px">Blog CDI</h1>
+      <p class="hero-sub" style="max-width:640px">Contenido técnico sobre consultoría de depósitos, inventarios y logística. Estamos preparando los primeros artículos.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="section-header"><div class="tag">Categorías</div><h2>De qué vamos a hablar</h2></div>
+      <div class="panel-grid g3">
+        {categories.map(c => {
+          const count = posts.filter(p => p.data.category === c.slug).length;
+          return (
+            <div class="p-card">
+              <div class="meta"><span class="stat" style="color:var(--muted);background:var(--panel-2)">{count > 0 ? `${count} artículo${count > 1 ? 's' : ''}` : 'próximamente'}</span></div>
+              <h3 style="font-size:16.5px">{c.t}</h3>
+              <p>{c.d}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+  <CtaBanner heading="¿Preferís hablar con un consultor directamente?" sub="Mientras preparamos el blog, agendá un diagnóstico gratuito y lo vemos en una conversación." />
+</Layout>

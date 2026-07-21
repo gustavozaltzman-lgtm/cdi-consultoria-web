@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import KpiRow from '../components/KpiRow.astro';
+import Faq from '../components/Faq.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema, serviceSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Qué hace una consultora de supply chain, a diferencia de una de depósitos?', a: 'La consultoría de depósitos resuelve un eslabón puntual (el almacén). La consultoría de supply chain mira la cadena completa —compras, recepción, almacenamiento, preparación y distribución— para que ningún eslabón optimizado individualmente genere un cuello de botella en otro.' },
+  { q: '¿CDI trabaja solo depósito o toda la cadena de suministro?', a: 'Nuestro foco histórico es el depósito y el inventario, pero cuando el diagnóstico muestra que el problema real está en la interfaz con compras, producción o distribución, extendemos el análisis a esos puntos de contacto.' },
+  { q: '¿Cómo se mide la mejora en supply chain?', a: 'Con indicadores de nivel de servicio (fill rate), rotación de inventario, tiempo de ciclo de pedido y exactitud de stock — medidos antes y después de la intervención, no solo con la percepción del equipo.' },
+];
+---
+<Layout
+  title="Consultoría de Supply Chain | CDI Consultoría"
+  description="Consultoría de supply chain: analizamos la cadena de suministro completa —compras, depósito, picking y distribución— para eliminar cuellos de botella entre eslabones."
+  keywords="consultoría de supply chain, cadena de suministro, logística integral, gestión de la cadena de suministro"
+  jsonLd={[faqSchema(faqs), serviceSchema({ name: 'Consultoría de Supply Chain', description: 'Análisis integral de la cadena de suministro para eliminar cuellos de botella entre compras, depósito y distribución.' })]}
+>
+  <Breadcrumb current="Supply Chain" />
+  <section class="hero" style="padding:48px 0 70px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> CONSULTORÍA DE SUPPLY CHAIN</div>
+      <h1 style="font-size:44px;max-width:760px">¿Tu depósito funciona bien pero la cadena completa no?</h1>
+      <p class="hero-sub" style="max-width:640px">A veces el problema no está en un eslabón, sino en la interfaz entre ellos. Analizamos la cadena de suministro completa para que la mejora en un punto no genere un cuello de botella en otro.</p>
+      <div class="hero-ctas"><a href="#contacto" class="btn btn-primary">Solicitar un diagnóstico</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">Problemas que resolvemos</div>
+        <h2>Cuando cada área optimiza por su cuenta</h2>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><h3>Compras y depósito no se hablan</h3><p>El área de compras negocia volúmenes sin considerar la capacidad real de almacenamiento o de recepción.</p></div>
+        <div class="p-card warn"><h3>Exceso de stock en un punto, faltantes en otro</h3><p>Cada eslabón gestiona su propio buffer de seguridad, sin visibilidad de lo que pasa aguas arriba o abajo.</p></div>
+        <div class="p-card warn"><h3>El nivel de servicio no mejora aunque el depósito sí</h3><p>Se invirtió en el depósito pero el cliente final sigue esperando más de lo esperado.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Resultado</div><h2>Qué medimos</h2></div>
+      <KpiRow items={[{n:'Fill rate',l:'Nivel de servicio'},{n:'Rotación',l:'De inventario'},{n:'Ciclo',l:'Tiempo de pedido a entrega'}]} />
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Preguntas frecuentes</div><h2>Sobre consultoría de supply chain</h2></div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría relacionada</div><h2>Otras líneas de trabajo</h2></div>
+      <RelatedServices exclude="/supply-chain" />
+    </div>
+  </section>
+
+  <CtaBanner heading="¿La mejora de un área no se refleja en el resultado final?" />
+</Layout>

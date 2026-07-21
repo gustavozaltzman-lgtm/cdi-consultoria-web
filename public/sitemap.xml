@@ -11,9 +11,15 @@
   <url><loc>https://cdinet.com.ar/implementacion-wms</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://cdinet.com.ar/rfid-depositos</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://cdinet.com.ar/codigo-de-barras-inventarios</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/supply-chain</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cdinet.com.ar/mejora-continua</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/capacitacion-operativa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/optimizacion-picking</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cdinet.com.ar/inventarios-ciclicos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://cdinet.com.ar/metodologia</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://cdinet.com.ar/nosotros</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://cdinet.com.ar/faq</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/blog</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://cdinet.com.ar/contacto</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://cdinet.com.ar/casos-de-exito</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://cdinet.com.ar/casos-de-exito/bustin</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>

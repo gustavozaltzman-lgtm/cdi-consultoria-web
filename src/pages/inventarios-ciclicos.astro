@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import KpiRow from '../components/KpiRow.astro';
+import Faq from '../components/Faq.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema, serviceSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Cómo implementar inventarios cíclicos?', a: 'Se empieza dividiendo el stock en grupos (por rotación, valor o criticidad) y definiendo una frecuencia de conteo para cada grupo. Los grupos de mayor movimiento o valor se cuentan con más frecuencia que los de baja rotación.' },
+  { q: '¿Inventario cíclico o inventario anual?', a: 'El inventario anual paraliza el depósito varios días y solo muestra una foto por año. El inventario cíclico cuenta porciones del stock de forma rotativa con colectores de datos, sin cerrar la operación, y detecta discrepancias mucho antes.' },
+  { q: '¿Cuánto personal hace falta para un inventario cíclico?', a: 'Menos que para un inventario anual: en vez de movilizar a todo el equipo unos pocos días al año, se asigna un conteo acotado de forma recurrente, integrado a la operación diaria.' },
+];
+---
+<Layout
+  title="Inventarios Cíclicos | CDI Consultoría"
+  description="Implementación de inventarios cíclicos: conteo rotativo de stock con colectores de datos, sin cerrar el depósito, para sostener la exactitud durante todo el año."
+  keywords="inventarios cíclicos, conteo cíclico de stock, inventario rotativo, inventario cíclico vs anual"
+  jsonLd={[faqSchema(faqs), serviceSchema({ name: 'Inventarios Cíclicos', description: 'Diseño e implementación de esquemas de conteo cíclico de inventario, sin paralizar la operación del depósito.' })]}
+>
+  <Breadcrumb current="Inventarios Cíclicos" />
+  <section class="hero" style="padding:48px 0 70px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> INVENTARIOS CÍCLICOS</div>
+      <h1 style="font-size:44px;max-width:760px">¿Todavía cerrás el depósito una vez al año para contar stock?</h1>
+      <p class="hero-sub" style="max-width:640px">Diseñamos e implementamos inventarios cíclicos: conteo rotativo de porciones del stock, con colectores de datos, sin parar la operación.</p>
+      <div class="hero-ctas"><a href="#contacto" class="btn btn-primary">Solicitar un diagnóstico</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">Problemas que resolvemos</div>
+        <h2>"El inventario anual ya no es viable"</h2>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><h3>Tres días de depósito cerrado</h3><p>Y al mes siguiente los números ya no dan, porque el resto del año no hay ningún control.</p></div>
+        <div class="p-card warn"><h3>Demasiados SKUs para contar a mano</h3><p>Con miles de SKUs activos, un inventario general anual se vuelve directamente inviable de ejecutar.</p></div>
+        <div class="p-card warn"><h3>Ninguna alerta temprana</h3><p>Un problema de stock recién se detecta una vez al año, cuando ya generó pérdidas acumuladas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Resultado</div><h2>Lo que logramos con clientes reales</h2></div>
+      <KpiRow items={[{n:'99.9%',l:'Exactitud sostenida'},{n:'0 días',l:'De depósito cerrado'},{n:'Continuo',l:'En vez de una vez al año'}]} />
+      <div class="case-card" style="max-width:640px">
+        <div class="case-head"><div><span class="case-industry">Alimentos</span><h3>Adama</h3></div><span class="case-status">Activo y estable</span></div>
+        <p class="case-problem">Inventarios anuales cancelados por ser inviables de realizar manualmente con 500 ton/mes de movimiento.</p>
+        <p class="case-solution"><strong>Solución:</strong> control por lotes e inventarios cíclicos con colectores de datos.</p>
+        <div class="case-result"><a href="/casos-de-exito/adama" style="color:var(--blue)">→ Ver caso completo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Preguntas frecuentes</div><h2>Sobre inventarios cíclicos</h2></div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría relacionada</div><h2>Otras líneas de trabajo</h2></div>
+      <RelatedServices exclude="/inventarios-ciclicos" />
+    </div>
+  </section>
+
+  <CtaBanner heading="¿Tu inventario anual dejó de ser viable?" />
+</Layout>

@@ -6,13 +6,21 @@ const all = [
   { href: '/consultoria-inventarios', t: 'Consultoría de Inventarios', d: 'Control y exactitud de stock.' },
   { href: '/auditoria-inventarios', t: 'Auditoría de Inventarios', d: 'Relevamiento puntual e informe.' },
   { href: '/optimizacion-depositos', t: 'Optimización de Depósitos', d: 'Layout y flujo más eficiente.' },
+  { href: '/optimizacion-picking', t: 'Optimización de Picking', d: 'Menos errores, más velocidad.' },
   { href: '/organizacion-almacenes', t: 'Organización de Almacenes', d: 'Del desorden al control.' },
+  { href: '/inventarios-ciclicos', t: 'Inventarios Cíclicos', d: 'Conteo rotativo, sin cerrar el depósito.' },
   { href: '/exactitud-inventario', t: 'Exactitud de Inventario', d: 'Llegar y sostener 99%+.' },
+  { href: '/supply-chain', t: 'Supply Chain', d: 'La cadena completa, no solo el depósito.' },
+  { href: '/mejora-continua', t: 'Mejora Continua', d: 'Que la mejora se sostenga en el tiempo.' },
+  { href: '/capacitacion-operativa', t: 'Capacitación Operativa', d: 'Talleres para tu equipo.' },
   { href: '/implementacion-wms', t: 'Implementación de WMS', d: 'El sistema como herramienta.' },
   { href: '/rfid-depositos', t: 'RFID en Depósitos', d: 'Trazabilidad automática.' },
   { href: '/codigo-de-barras-inventarios', t: 'Código de Barras', d: 'La base de todo control.' },
 ];
-const items = all.filter(s => s.href !== exclude).slice(0, 3);
+const filtered = all.filter(s => s.href !== exclude);
+const startIdx = Math.max(0, all.findIndex(s => s.href === exclude));
+const rotated = [...filtered.slice(startIdx % filtered.length), ...filtered.slice(0, startIdx % filtered.length)];
+const items = rotated.slice(0, 3);
 ---
 <div class="related-grid">
   {items.map(s => (

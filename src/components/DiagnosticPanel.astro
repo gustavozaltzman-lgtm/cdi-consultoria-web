@@ -1,0 +1,31 @@
+---
+const findings = [
+  { label: 'Exactitud de inventario actual', value: '~87%', tag: 'alerta' },
+  { label: 'Ubicaciones sin codificar', value: '3 de 6 sectores', tag: 'alerta' },
+  { label: 'Tiempo promedio de picking', value: '14 min/pedido', tag: 'revisar' },
+  { label: 'Procesos documentados', value: 'Ninguno', tag: 'alerta' },
+  { label: 'Potencial de mejora estimado', value: '+12 pts de exactitud', tag: 'ok' },
+];
+---
+<div class="console" aria-hidden="true">
+  <div class="console-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="label">diagnóstico-preliminar.pdf</span></div>
+  <div class="console-body" style="height:auto;padding:22px 20px;font-family:'Inter',sans-serif">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">Hallazgos de un relevamiento típico</div>
+    {findings.map(f => (
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid var(--border)">
+        <div>
+          <div style="font-size:13.5px;color:var(--text)">{f.label}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:2px">{f.value}</div>
+        </div>
+        <span class:list={["stat", f.tag]} style="flex-shrink:0"
+          data-tag={f.tag}
+        >{f.tag}</span>
+      </div>
+    ))}
+  </div>
+</div>
+<style>
+  .stat[data-tag="alerta"]{color:var(--amber);background:rgba(245,166,35,.1);font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 9px;border-radius:20px;text-transform:uppercase}
+  .stat[data-tag="revisar"]{color:var(--blue);background:rgba(78,161,255,.1);font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 9px;border-radius:20px;text-transform:uppercase}
+  .stat[data-tag="ok"]{color:var(--green);background:rgba(46,213,115,.1);font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 9px;border-radius:20px;text-transform:uppercase}
+</style>
