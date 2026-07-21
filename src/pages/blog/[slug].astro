@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, description, category, publishDate, author } = post.data;
+const categoryLabels = {
+  'inventarios': 'Inventarios', 'depositos': 'Depósitos', 'wms': 'WMS', 'rfid': 'RFID',
+  'codigo-de-barras': 'Código de Barras', 'picking': 'Picking', 'layout': 'Layout',
+  'lean-warehouse': 'Lean Warehouse', 'supply-chain': 'Supply Chain', 'exactitud-de-inventario': 'Exactitud de Inventario',
+};
+---
+<Layout title={`${title} | Blog CDI Consultoría`} description={description} keywords={`${categoryLabels[category]}, blog logística`}>
+  <Breadcrumb current={title} section={{ label: 'Blog', href: '/blog' }} />
+  <section class="hero" style="padding:48px 0 30px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> {categoryLabels[category]}</div>
+      <h1 style="font-size:38px;max-width:760px">{title}</h1>
+      <p class="hero-sub" style="max-width:640px">{description}</p>
+      <p class="mono" style="font-size:12px;color:var(--muted)">{author} · {publishDate.toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container prose">
+      <Content />
+    </div>
+  </section>
+  <CtaBanner heading="¿Querés aplicar esto en tu operación?" />
+</Layout>

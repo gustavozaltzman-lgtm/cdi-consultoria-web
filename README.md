@@ -28,7 +28,10 @@ src/
                               # DiagnosticPanel (panel del hero), ConsoleLog (sin usar, ver nota abajo)
   lib/schema.js               # helpers para generar JSON-LD: faqSchema(), serviceSchema(), articleSchema()
   styles/global.css           # todo el CSS del sitio (paleta dark "consola", ver sección Diseño)
-  content/blog/               # content collection de Astro para el futuro blog (vacía a propósito)
+  content/
+    config.ts                # define las collections "blog" y "casos" (schema con Zod)
+    blog/                    # artículos — editable desde /admin, vacía a propósito hasta hoy
+    casos/                   # 6 casos de éxito reales en Markdown — editable desde /admin
   pages/
     index.astro                       # Home
     servicios.astro                   # hub que linkea las 14 páginas de servicio
@@ -37,9 +40,15 @@ src/
     nosotros.astro
     faq.astro                         # 30 preguntas
     contacto.astro
-    blog/index.astro                  # listado de categorías, sin artículos aún
-    casos-de-exito/index.astro        # + 6 páginas, una por cliente real
+    blog/index.astro                  # listado de categorías + artículos publicados
+    blog/[slug].astro                 # template de artículo individual (lee de content/blog)
+    casos-de-exito/index.astro        # listado, lee de content/casos
+    casos-de-exito/[slug].astro       # template de caso individual (lee de content/casos)
+api/
+  auth.js                     # inicia el login OAuth con GitHub (Vercel Serverless Function)
+  callback.js                 # intercambia el code por un token y se lo pasa al panel /admin
 public/
+  admin/                      # panel de contenido (Decap CMS) — ver sección "Panel de contenido"
   assets/                     # fotos e íconos (generados con IA, ver nota abajo)
   robots.txt                  # permite explícitamente GPTBot, ClaudeBot, PerplexityBot, etc.
   sitemap.xml                 # a mano, 28 URLs — actualizar si se agregan páginas
@@ -88,9 +97,34 @@ El panel del hero (`DiagnosticPanel.astro`) muestra hallazgos de un diagnóstico
 
 Fotos e íconos en `public/assets/` fueron generados con IA (ChatGPT/DALL-E) a partir de un contact sheet, recortados con Python/PIL. Las versiones `*-full.png` incluyen el label de texto original; las que no tienen sufijo son el ícono solo. No hay licencias de terceros involucradas — son 100% generados.
 
+## Panel de contenido (CMS)
+
+El sitio tiene un panel visual en `/admin` (Decap CMS) para publicar artículos de blog y editar casos de éxito sin tocar código. Guarda los cambios como commits reales en este repo (no hay base de datos separada).
+
+**Qué se edita ahí:**
+- **Blog** → escribe en `src/content/blog/*.md`, los lee `src/pages/blog/[slug].astro`.
+- **Casos de éxito** → escribe en `src/content/casos/*.md`, los lee `src/pages/casos-de-exito/[slug].astro`.
+
+El resto del sitio (landings de servicio, home, metodología) sigue siendo código `.astro` — no está pensado para editarse desde acá.
+
+### Configuración inicial (una sola vez, la tiene que hacer el dueño de la cuenta de GitHub)
+
+1. En GitHub: **Settings → Developer settings → OAuth Apps → New OAuth App**
+   - Homepage URL: `https://cdi-consultoria-web.vercel.app`
+   - Authorization callback URL: `https://cdi-consultoria-web.vercel.app/api/callback`
+   - Generar la app, copiar el **Client ID**, y generar+copiar un **Client Secret** (solo se muestra una vez).
+2. En Vercel: **Project → Settings → Environment Variables**, agregar:
+   - `OAUTH_GITHUB_CLIENT_ID` = el Client ID
+   - `OAUTH_GITHUB_CLIENT_SECRET` = el Client Secret
+   - Aplicar a Production, y volver a desplegar (redeploy) para que tomen efecto.
+3. Entrar a `https://cdi-consultoria-web.vercel.app/admin`, tocar **Login with GitHub**, autorizar. Listo — el panel guarda cada cambio como un commit en `main`, que dispara un redeploy automático como cualquier otro push.
+
+Si el dominio pasa a `cdinet.com.ar`, hay que actualizar 3 lugares: `base_url` en `public/admin/config.yml`, y el Homepage/Callback URL en la GitHub OAuth App.
+
 ## Pendiente / decisiones abiertas
 
 - `sameAs` del schema Organization solo tiene el propio dominio y `sznet.com.ar` — falta LinkedIn u otro perfil externo real (no inventar).
 - Confirmar en el dashboard de Vercel que el Framework Preset quedó en "Astro" tras la migración desde HTML estático.
+- **Configurar la GitHub OAuth App y las variables de entorno (ver "Panel de contenido" arriba) para que `/admin` funcione** — sin esto, el panel carga pero el login falla.
 - Testimonios de clientes, porcentajes de resultado por caso, y artículos de blog: en pausa hasta tener datos reales (ver regla 4 de Posicionamiento).
 - El dominio de producción (`cdinet.com.ar`) todavía no apunta a este deploy de Vercel — pendiente de migración DNS por parte del cliente.

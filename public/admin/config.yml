@@ -1,0 +1,70 @@
+backend:
+  name: github
+  repo: gustavozaltzman-lgtm/cdi-consultoria-web
+  branch: main
+  base_url: https://cdi-consultoria-web.vercel.app
+  auth_endpoint: api/auth
+
+# Cuando el dominio pase a cdinet.com.ar, actualizar base_url arriba
+# y el callback URL de la GitHub OAuth App (ver README).
+
+media_folder: "public/assets/blog"
+public_folder: "/assets/blog"
+
+publish_mode: simple
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    label_singular: "Artículo"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descripción (para SEO, 1-2 frases)", name: "description", widget: "text" }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Inventarios", value: "inventarios" }
+          - { label: "Depósitos", value: "depositos" }
+          - { label: "WMS", value: "wms" }
+          - { label: "RFID", value: "rfid" }
+          - { label: "Código de Barras", value: "codigo-de-barras" }
+          - { label: "Picking", value: "picking" }
+          - { label: "Layout", value: "layout" }
+          - { label: "Lean Warehouse", value: "lean-warehouse" }
+          - { label: "Supply Chain", value: "supply-chain" }
+          - { label: "Exactitud de Inventario", value: "exactitud-de-inventario" }
+      - { label: "Fecha de publicación", name: "publishDate", widget: "datetime" }
+      - { label: "Autor", name: "author", widget: "string", default: "CDI Consultoría" }
+      - { label: "Borrador (no se publica hasta desmarcar)", name: "draft", widget: "boolean", default: true }
+      - { label: "Contenido del artículo", name: "body", widget: "markdown" }
+
+  - name: "casos"
+    label: "Casos de éxito"
+    label_singular: "Caso"
+    folder: "src/content/casos"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "client"
+    fields:
+      - { label: "Cliente", name: "client", widget: "string" }
+      - { label: "Industria / rubro", name: "industry", widget: "string" }
+      - { label: "Estado o resultado corto (para la tarjeta)", name: "status", widget: "string", hint: "Ej: 'Trazabilidad total', 'Piloto en curso'" }
+      - { label: "Subtítulo (debajo del nombre del cliente)", name: "subtitle", widget: "text" }
+      - { label: "Título largo (para buscadores)", name: "headline", widget: "string" }
+      - { label: "El problema", name: "problem", widget: "text" }
+      - { label: "La solución", name: "solution", widget: "text" }
+      - { label: "El resultado", name: "result", widget: "text" }
+      - { label: "Link a servicio relacionado (opcional)", name: "relatedService", widget: "string", required: false, hint: "Ej: /consultoria-depositos" }
+      - { label: "Texto del link relacionado (opcional)", name: "relatedServiceLabel", widget: "string", required: false }
+      - { label: "Fecha", name: "datePublished", widget: "datetime" }
+      - { label: "Orden en el listado", name: "order", widget: "number", default: 99 }
+      - { label: "Contenido adicional (opcional, no se usa hoy)", name: "body", widget: "markdown", required: false }

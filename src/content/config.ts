@@ -23,4 +23,22 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const casos = defineCollection({
+  type: 'content',
+  schema: z.object({
+    client: z.string(),
+    industry: z.string(),
+    status: z.string(),
+    subtitle: z.string(),
+    headline: z.string(),
+    problem: z.string(),
+    solution: z.string(),
+    result: z.string(),
+    relatedService: z.string().optional(),
+    relatedServiceLabel: z.string().optional(),
+    datePublished: z.date().default(() => new Date('2024-01-01')),
+    order: z.number().default(99),
+  }),
+});
+
+export const collections = { blog, casos };

@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { articleSchema } from '../../lib/schema.js';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const casos = await getCollection('casos');
+  return casos.map(caso => ({
+    params: { slug: caso.slug },
+    props: { caso },
+  }));
+}
+
+const { caso } = Astro.props;
+const { client, industry, status, subtitle, headline, problem, solution, result, relatedService, relatedServiceLabel, datePublished } = caso.data;
+---
+<Layout
+  title={`Caso de éxito: ${client} | CDI Consultoría`}
+  description={`Cómo ayudamos a ${client} (${industry.toLowerCase()}): ${subtitle}`}
+  keywords={`caso de éxito ${client}, consultoría de depósitos ${industry.toLowerCase()}`}
+  jsonLd={[articleSchema({ headline, about: relatedServiceLabel || 'Consultoría logística', client, datePublished: datePublished.toISOString().slice(0, 10) })]}
+>
+  <Breadcrumb current={client} section={{ label: 'Casos de éxito', href: '/casos-de-exito' }} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <span class="case-industry" style="display:inline-block;margin-bottom:14px">{industry}</span>
+      <h1 style="font-size:40px;max-width:760px">{client}</h1>
+      <p class="hero-sub" style="max-width:640px">{subtitle}</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container prose">
+      <h2>El problema</h2>
+      <p>{problem}</p>
+      <h2>La solución</h2>
+      <p>{solution}</p>
+      <h2>El resultado</h2>
+      <p>{result}</p>
+      <div class="case-result" style="display:inline-block;margin-top:10px">✓ {status}</div>
+      {relatedService && (
+        <p style="margin-top:32px"><a href={relatedService} style="color:var(--blue)">→ {relatedServiceLabel}</a></p>
+      )}
+    </div>
+  </section>
+  <CtaBanner heading={`¿Tu operación se parece a la de ${client}?`} />
+</Layout>

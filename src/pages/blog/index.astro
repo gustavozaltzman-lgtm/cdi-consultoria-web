@@ -4,7 +4,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 
 const categories = [
   { slug: 'inventarios', t: 'Inventarios', d: 'Control de stock, exactitud y auditoría.' },
@@ -28,9 +29,27 @@ const categories = [
   <section class="hero" style="padding:48px 0 40px">
     <div class="container">
       <h1 style="font-size:40px;max-width:760px">Blog CDI</h1>
-      <p class="hero-sub" style="max-width:640px">Contenido técnico sobre consultoría de depósitos, inventarios y logística. Estamos preparando los primeros artículos.</p>
+      <p class="hero-sub" style="max-width:640px">Contenido técnico sobre consultoría de depósitos, inventarios y logística.</p>
     </div>
   </section>
+
+  {posts.length > 0 && (
+    <section style="padding-top:0">
+      <div class="container">
+        <div class="section-header"><div class="tag">Últimos artículos</div><h2>Artículos publicados</h2></div>
+        <div class="panel-grid g3">
+          {posts.map(post => (
+            <a class="p-card" style="text-decoration:none;display:block" href={`/blog/${post.slug}`}>
+              <div class="meta"><span class="stat" style="color:var(--blue);background:rgba(78,161,255,.1)">{post.data.category}</span></div>
+              <h3 style="font-size:16.5px;color:var(--text)">{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section style="padding-top:0">
     <div class="container">
       <div class="section-header"><div class="tag">Categorías</div><h2>De qué vamos a hablar</h2></div>
