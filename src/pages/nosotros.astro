@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+---
+<Layout
+  title="Nosotros | CDI Consultoría"
+  description="CDI Consultoría: más de 30 años de consultoría en logística, depósitos e inventarios en Argentina y Uruguay. Consultores senior, no vendedores de hardware."
+  keywords="CDI Consultoría, empresa de consultoría logística Argentina, consultora de depósitos Uruguay"
+>
+  <Breadcrumb current="Nosotros" section={null} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <div class="about-grid">
+        <img class="about-photo" src="/assets/foto-scanner-rack.png" alt="Consultor de CDI relevando un depósito" loading="lazy">
+        <div>
+          <h1 style="font-size:34px;margin-bottom:18px">Consultores de depósito, no vendedores de hardware</h1>
+          <div class="prose">
+            <p>Desde 1992 ofrecemos consultoría logística, consultoría de depósitos y consultoría de inventarios a empresas argentinas y uruguayas —industria, alimentos, automotriz, e-commerce, distribución y mayoristas.</p>
+            <p>No llegamos con un catálogo de lectores para vender: llegamos a entender cómo se mueve tu mercadería y diseñamos el sistema alrededor de eso. El código de barras, el RFID y el WMS son herramientas que recomendamos cuando el diagnóstico las justifica — nunca el punto de partida.</p>
+            <p>Nos quedamos durante la implementación y después, con acompañamiento continuo, hasta que el depósito funcione solo.</p>
+          </div>
+          <ul class="about-points" style="margin-top:24px">
+            <li><span class="ok">✓</span> Consultores senior en cada proyecto, no juniors aprendiendo con tu operación</li>
+            <li><span class="ok">✓</span> Diseño a medida de tu flujo real, sin modelos rígidos prearmados</li>
+            <li><span class="ok">✓</span> Integración con el ERP/WMS que ya tenés</li>
+            <li><span class="ok">✓</span> Oficinas y operación activa en Argentina y Uruguay</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="status-row" style="border:1px solid var(--border);border-radius:12px;overflow:hidden">
+        <div class="status-cell"><div class="n">30+</div><div class="l">Años de experiencia</div></div>
+        <div class="status-cell"><div class="n">2</div><div class="l">Países — AR / UY</div></div>
+        <div class="status-cell"><div class="n">6</div><div class="l">Rubros atendidos</div></div>
+        <div class="status-cell"><div class="n">99.9%</div><div class="l">Exactitud de inventario</div></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</Layout>

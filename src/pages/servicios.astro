@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const consultoria = [
+  { href: '/consultoria-depositos', t: 'Consultoría de Depósitos', d: 'Orden, flujo y ubicaciones. Reducimos errores de picking y tiempos muertos.' },
+  { href: '/consultoria-inventarios', t: 'Consultoría de Inventarios', d: 'Control de stock e inventarios cíclicos que se sostienen en el tiempo.' },
+  { href: '/auditoria-inventarios', t: 'Auditoría de Inventarios', d: 'Diagnóstico puntual e independiente, con informe ejecutivo.' },
+  { href: '/optimizacion-depositos', t: 'Optimización de Depósitos', d: 'Rediseño de layout y flujo para depósitos que ya funcionan.' },
+  { href: '/organizacion-almacenes', t: 'Organización de Almacenes', d: 'Del desorden al control: mapeo y codificación de almacenes.' },
+  { href: '/exactitud-inventario', t: 'Exactitud de Inventario', d: 'Cómo llegar y sostener 99%+ de precisión de stock.' },
+];
+const tecnologia = [
+  { href: '/implementacion-wms', t: 'Implementación de WMS', d: 'El sistema como herramienta, integrado a tu operación real.' },
+  { href: '/rfid-depositos', t: 'RFID en Depósitos', d: 'Trazabilidad automática cuando el volumen lo justifica.' },
+  { href: '/codigo-de-barras-inventarios', t: 'Código de Barras', d: 'La base de todo control de inventario, GS1 compliant.' },
+];
+---
+<Layout
+  title="Servicios de Consultoría | CDI Consultoría"
+  description="Todas nuestras líneas de consultoría en logística, depósitos e inventarios, y la tecnología que aplicamos como herramienta cuando el diagnóstico lo justifica."
+  keywords="servicios de consultoría logística, consultoría de depósitos, consultoría de inventarios"
+>
+  <Breadcrumb current="Servicios" section={null} />
+  <section class="hero" style="padding:48px 0 60px">
+    <div class="container">
+      <h1 style="font-size:40px;max-width:760px">Nuestras consultorías</h1>
+      <p class="hero-sub" style="max-width:640px">Cada empresa entra por un problema distinto. Elegí el que más se parece al tuyo, o pedí un diagnóstico y lo definimos juntos.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría</div><h2>Nuestro servicio principal</h2></div>
+      <div class="panel-grid g3">
+        {consultoria.map(s => (
+          <a class="p-card" style="text-decoration:none;display:block" href={s.href}>
+            <h3 style="font-size:17px;color:var(--text)">{s.t}</h3>
+            <p>{s.d}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Tecnología que aplicamos</div><h2>Herramientas, no el servicio principal</h2></div>
+      <div class="panel-grid g3">
+        {tecnologia.map(s => (
+          <a class="p-card" style="text-decoration:none;display:block" href={s.href}>
+            <h3 style="font-size:17px;color:var(--text)">{s.t}</h3>
+            <p>{s.d}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</Layout>

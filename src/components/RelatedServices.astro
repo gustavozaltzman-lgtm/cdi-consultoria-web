@@ -1,0 +1,24 @@
+---
+interface Props { exclude?: string; }
+const { exclude = '' } = Astro.props;
+const all = [
+  { href: '/consultoria-depositos', t: 'Consultoría de Depósitos', d: 'Orden, flujo y ubicaciones.' },
+  { href: '/consultoria-inventarios', t: 'Consultoría de Inventarios', d: 'Control y exactitud de stock.' },
+  { href: '/auditoria-inventarios', t: 'Auditoría de Inventarios', d: 'Relevamiento puntual e informe.' },
+  { href: '/optimizacion-depositos', t: 'Optimización de Depósitos', d: 'Layout y flujo más eficiente.' },
+  { href: '/organizacion-almacenes', t: 'Organización de Almacenes', d: 'Del desorden al control.' },
+  { href: '/exactitud-inventario', t: 'Exactitud de Inventario', d: 'Llegar y sostener 99%+.' },
+  { href: '/implementacion-wms', t: 'Implementación de WMS', d: 'El sistema como herramienta.' },
+  { href: '/rfid-depositos', t: 'RFID en Depósitos', d: 'Trazabilidad automática.' },
+  { href: '/codigo-de-barras-inventarios', t: 'Código de Barras', d: 'La base de todo control.' },
+];
+const items = all.filter(s => s.href !== exclude).slice(0, 3);
+---
+<div class="related-grid">
+  {items.map(s => (
+    <a class="related-card" href={s.href}>
+      <div class="rt">{s.t}</div>
+      <div class="rd">{s.d}</div>
+    </a>
+  ))}
+</div>

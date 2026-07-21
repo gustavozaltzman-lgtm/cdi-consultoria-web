@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { articleSchema } from '../../lib/schema.js';
+---
+<Layout
+  title="Caso de éxito: San Justo Iluminación | CDI Consultoría"
+  description="Cómo ayudamos a San Justo Iluminación (manufactura, 3.900 SKUs) a mapear su depósito por sectores y eliminar el stock en negativo."
+  keywords="caso de éxito San Justo Iluminación, consultoría de depósitos manufactura"
+  jsonLd={[articleSchema({ headline: 'Cómo San Justo Iluminación mapeó 3.900 SKUs por sectores', about: 'Organización de almacenes', client: 'San Justo Iluminación', datePublished: '2024-01-01' })]}
+>
+  <Breadcrumb current="San Justo Iluminación" section={{ label: 'Casos de éxito', href: '/casos-de-exito' }} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <span class="case-industry" style="display:inline-block;margin-bottom:14px">Manufactura</span>
+      <h1 style="font-size:40px;max-width:760px">San Justo Iluminación</h1>
+      <p class="hero-sub" style="max-width:640px">3.900 SKUs de ventas y 2.500 semielaborados, mapeados y codificados por sector.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container prose">
+      <h2>El problema</h2>
+      <p>San Justo Iluminación manejaba 3.900 SKUs de ventas más 2.500 semielaborados, con 1.200 facturas por mes y 1.200 cajas diarias movidas sin verificación. El stock estaba en negativo, no había ubicaciones codificadas y la carga se hacía en forma manual y secuencial, sin división del depósito por zonas de proceso.</p>
+      <h2>La solución</h2>
+      <p>Codificamos los semielaborados con código de barras y mapeamos las estanterías por sectores de proceso. Implementamos control de acceso al almacén y reportes con código de barras para el pickeo por orden de producción (OP), reemplazando las listas impresas y la memoria de los operadores.</p>
+      <h2>El resultado</h2>
+      <p>El mapeo del depósito quedó completo, con los procesos documentados y colectores Motorola TC21 operando en el día a día.</p>
+      <div class="case-result" style="display:inline-block;margin-top:10px">✓ Mapeo completo · Procesos documentados · Colectores Motorola TC21</div>
+      <p style="margin-top:32px"><a href="/organizacion-almacenes" style="color:var(--blue)">→ Conocé nuestra consultoría de organización de almacenes</a></p>
+    </div>
+  </section>
+  <CtaBanner heading="¿Tu depósito creció más rápido que su organización?" />
+</Layout>

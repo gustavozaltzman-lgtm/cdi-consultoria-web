@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import KpiRow from '../components/KpiRow.astro';
+import Faq from '../components/Faq.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema, serviceSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Optimización es lo mismo que organización de almacenes?', a: 'Están relacionadas pero no son lo mismo: la organización resuelve el desorden de un depósito que no tiene estructura. La optimización parte de un depósito que ya funciona, pero busca reducir tiempos muertos y cuellos de botella puntuales.' },
+  { q: '¿Cómo se mide la mejora?', a: 'Con tiempos de descarga, tiempos de picking por pedido, y rotación de espacio antes y después del cambio de flujo. Definimos las métricas junto a tu equipo desde el relevamiento inicial.' },
+  { q: '¿Hay que parar la operación para optimizar el depósito?', a: 'No. Diseñamos los cambios de flujo para implementarse por etapas, sin detener ingresos, picking ni despachos.' },
+];
+---
+<Layout
+  title="Optimización de Depósitos | CDI Consultoría"
+  description="Optimización de depósitos: rediseño de layout y flujo para reducir cuellos de botella, tiempos de descarga y mejorar la capacidad utilizada, sin frenar la operación."
+  keywords="optimización de depósitos, optimización logística, cuellos de botella en depósito, flujo de mercadería"
+  jsonLd={[faqSchema(faqs), serviceSchema({ name: 'Optimización de Depósitos', description: 'Rediseño de layout y flujo de depósito para reducir cuellos de botella y tiempos muertos.' })]}
+>
+  <Breadcrumb current="Optimización de Depósitos" />
+  <section class="hero" style="padding:48px 0 70px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> OPTIMIZACIÓN DE DEPÓSITOS</div>
+      <h1 style="font-size:44px;max-width:760px">Optimización de Depósitos</h1>
+      <p class="hero-sub" style="max-width:640px">Para depósitos que ya funcionan pero podrían rendir más. Rediseñamos el layout y el flujo para reducir cuellos de botella sin frenar la operación.</p>
+      <div class="hero-ctas"><a href="#contacto" class="btn btn-primary">Solicitar diagnóstico gratuito</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">Problemas que resolvemos</div>
+        <h2>"Los camiones esperan horas para descargar"</h2>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><h3>Tiempos de descarga largos</h3><p>Un camión espera 2 horas para descargar porque todo se anota a mano.</p></div>
+        <div class="p-card warn"><h3>Capacidad subutilizada</h3><p>Hay espacio de depósito que no se usa por un layout mal pensado desde el origen.</p></div>
+        <div class="p-card warn"><h3>El crecimiento no escala</h3><p>La operación duplicó volumen pero el flujo físico sigue siendo el mismo de hace años.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Resultados esperables</div><h2>Lo que cambia después de la consultoría</h2></div>
+      <KpiRow items={[{n:'-40%',l:'Tiempo de picking'},{n:'+',l:'Capacidad utilizada'},{n:'0',l:'Días de parada'}]} />
+      <div class="case-card" style="max-width:640px">
+        <div class="case-head"><div><span class="case-industry">Distribución</span><h3>Bustin</h3></div><span class="case-status">Piloto en curso</span></div>
+        <p class="case-problem">Ubicaciones fijas por celda con alta carga de mantenimiento, sin adaptarse a la operación dinámica.</p>
+        <p class="case-solution"><strong>Solución:</strong> ubicaciones dinámicas por zonas y clases de producto, con piloto de validación antes de escalar.</p>
+        <div class="case-result"><a href="/casos-de-exito/bustin" style="color:var(--blue)">→ Ver caso completo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Preguntas frecuentes</div><h2>Sobre la optimización de depósitos</h2></div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría relacionada</div><h2>Otras líneas de trabajo</h2></div>
+      <RelatedServices exclude="/optimizacion-depositos" />
+    </div>
+  </section>
+
+  <CtaBanner heading="¿Tu depósito podría rendir más?" sub="Agendá un diagnóstico gratuito de 30 minutos y te decimos dónde están los cuellos de botella." />
+</Layout>

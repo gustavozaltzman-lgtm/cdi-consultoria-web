@@ -1,0 +1,32 @@
+---
+---
+<div class="console" aria-hidden="true">
+  <div class="console-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="label">deposito.log</span></div>
+  <div class="console-body" id="consoleBody"></div>
+</div>
+<script>
+  const logLines = [
+    ['10:42:01', 'SCAN', 'SKU-4471', 'UBIC A-12-04', 'OK'],
+    ['10:42:03', 'SCAN', 'SKU-2290', 'UBIC B-07-02', 'OK'],
+    ['10:42:06', 'PICK', 'OP-88213', 'ZONA 3', 'OK'],
+    ['10:42:09', 'SCAN', 'SKU-1187', 'UBIC C-04-11', 'OK'],
+    ['10:42:12', 'EGR', 'REMITO-5521', 'TOYOTA TSUSHO', 'OK'],
+    ['10:42:15', 'INV', 'CICLICO', '300 SKUs', '99.9%'],
+    ['10:42:18', 'SCAN', 'SKU-7734', 'UBIC A-03-09', 'OK'],
+    ['10:42:21', 'ING', 'OC-1290', 'ADAMA', 'OK'],
+  ];
+  const body = document.getElementById('consoleBody');
+  let i = 0;
+  function addLine() {
+    if (!body) return;
+    const [t, op, ref, loc, status] = logLines[i % logLines.length];
+    const div = document.createElement('div');
+    div.className = 'ln';
+    div.innerHTML = `<span class="t">${t}</span> <span class="sku">${op} ${ref}</span> ${loc} <span class="ok">[${status}]</span>`;
+    body.appendChild(div);
+    if (body.children.length > 10) { body.removeChild(body.firstChild); }
+    i++;
+  }
+  for (let k = 0; k < 8; k++) { addLine(); }
+  setInterval(addLine, 1800);
+</script>

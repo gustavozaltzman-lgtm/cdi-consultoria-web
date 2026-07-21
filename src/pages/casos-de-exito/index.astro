@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+
+const cases = [
+  { href: '/casos-de-exito/bustin', industry: 'Distribución', client: 'Bustin', problem: 'Sistema Presea rígido, sin lectores de código de barras. Ubicaciones fijas con alta carga de mantenimiento.', status: 'Piloto en curso' },
+  { href: '/casos-de-exito/san-justo-iluminacion', industry: 'Manufactura', client: 'San Justo Iluminación', problem: '3.900 SKUs, 1.200 cajas diarias, stock en negativo, sin ubicaciones codificadas.', status: 'Mapeo completo' },
+  { href: '/casos-de-exito/adama', industry: 'Alimentos', client: 'Adama', problem: '500 ton/mes, sin ubicaciones específicas, inventarios cancelados por inviables.', status: 'Activo y estable' },
+  { href: '/casos-de-exito/toyota-tsusho', industry: 'Automotriz', client: 'Toyota Tsusho Argentina', problem: 'Inventarios en proveedores dispersos, sin trazabilidad de piezas, conteo manual.', status: 'Trazabilidad total' },
+  { href: '/casos-de-exito/mercado-libre', industry: 'E-commerce', client: 'Mercado Libre', problem: 'Activos fijos dispersos en múltiples locations, sin conciliación centralizada.', status: 'Sistemático' },
+  { href: '/casos-de-exito/sabbatini', industry: 'Mayorista', client: 'A. Sabbatini e Hijos', problem: 'Productos sin identificación unificada, sin control en expedición.', status: 'Integrado' },
+];
+---
+<Layout
+  title="Casos de Éxito | CDI Consultoría"
+  description="Casos de éxito reales de consultoría logística, de depósitos e inventarios: Toyota Tsusho, Mercado Libre, Adama, Bustin y más. Problema, solución y resultado cuantificado."
+  keywords="casos de éxito consultoría logística, casos de éxito control de stock"
+>
+  <Breadcrumb current="Casos de éxito" section={null} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <h1 style="font-size:40px;max-width:760px">Casos de éxito</h1>
+      <p class="hero-sub" style="max-width:640px">Cada cliente tiene una operación diferente. No vendemos un paquete estándar: diseñamos la solución para cada realidad.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="case-grid">
+        {cases.map(c => (
+          <a class="case-card" href={c.href} style="text-decoration:none;display:block">
+            <div class="case-head"><div><span class="case-industry">{c.industry}</span><h3>{c.client}</h3></div><span class="case-status">{c.status}</span></div>
+            <p class="case-problem">{c.problem}</p>
+            <div class="case-result">→ Ver caso completo</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBanner />
+</Layout>

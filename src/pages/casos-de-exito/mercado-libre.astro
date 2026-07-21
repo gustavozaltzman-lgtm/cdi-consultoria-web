@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { articleSchema } from '../../lib/schema.js';
+---
+<Layout
+  title="Caso de éxito: Mercado Libre | CDI Consultoría"
+  description="Cómo ayudamos a Mercado Libre a sistematizar el relevamiento y etiquetado de activos fijos dispersos en múltiples ubicaciones."
+  keywords="caso de éxito Mercado Libre, auditoría de activos fijos e-commerce"
+  jsonLd={[articleSchema({ headline: 'Cómo Mercado Libre sistematizó el relevamiento de activos fijos', about: 'Auditoría de inventarios', client: 'Mercado Libre', datePublished: '2024-01-01' })]}
+>
+  <Breadcrumb current="Mercado Libre" section={{ label: 'Casos de éxito', href: '/casos-de-exito' }} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <span class="case-industry" style="display:inline-block;margin-bottom:14px">E-commerce</span>
+      <h1 style="font-size:40px;max-width:760px">Mercado Libre</h1>
+      <p class="hero-sub" style="max-width:640px">Activos fijos dispersos en múltiples ubicaciones, relevados y etiquetados de forma sistemática.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container prose">
+      <h2>El problema</h2>
+      <p>Mercado Libre tenía activos fijos dispersos en múltiples locations (incluyendo SVC Munro, entre otras), sin conciliación centralizada. Necesitaban un relevamiento por ubicación con feedback específico de cada Location Name.</p>
+      <h2>La solución</h2>
+      <p>Diseñamos un cronograma de relevamiento por ubicación y etiquetamos los equipos —computadoras, impresoras, handhelds— con un formato de etiquetas personalizado. Conciliamos cada relevamiento contra el listado oficial de activos.</p>
+      <h2>El resultado</h2>
+      <p>El relevamiento quedó sistematizado como proceso repetible, con etiquetado corporativo consistente en todas las ubicaciones.</p>
+      <div class="case-result" style="display:inline-block;margin-top:10px">✓ Relevamiento sistematizado · Etiquetado corporativo</div>
+      <p style="margin-top:32px"><a href="/auditoria-inventarios" style="color:var(--blue)">→ Conocé nuestra auditoría de inventarios</a></p>
+    </div>
+  </section>
+  <CtaBanner heading="¿Tenés activos fijos dispersos sin conciliar?" />
+</Layout>

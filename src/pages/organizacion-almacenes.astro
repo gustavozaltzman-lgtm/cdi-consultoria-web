@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import KpiRow from '../components/KpiRow.astro';
+import Faq from '../components/Faq.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema, serviceSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Por dónde se empieza a organizar un almacén caótico?', a: 'Por un relevamiento físico: qué hay, dónde está, y por qué está ahí. Recién después diseñamos la codificación de racks, pasillos y posiciones — organizar sin relevar antes solo mueve el desorden de lugar.' },
+  { q: '¿Cuánto tiempo lleva pasar del desorden al control?', a: 'El diseño de flujos y codificación toma entre 3 y 4 semanas. La implementación completa, entre 4 y 8 semanas más, dependiendo del tamaño del almacén.' },
+  { q: '¿Sirve si tenemos varios depósitos o solo uno?', a: 'Ambos casos. Con varios depósitos, además codificamos entre ubicaciones para que cualquier persona pueda encontrar un SKU sin importar en qué sede está.' },
+];
+---
+<Layout
+  title="Organización de Almacenes | CDI Consultoría"
+  description="Organización de almacenes: pasamos del desorden a un almacén mapeado, codificado y escalable. Consultoría práctica, sin modelos rígidos prearmados."
+  keywords="organización de almacenes, almacén desordenado, codificación de rack, mapeo de almacén"
+  jsonLd={[faqSchema(faqs), serviceSchema({ name: 'Organización de Almacenes', description: 'Relevamiento y codificación de almacenes para pasar del desorden a un sistema de ubicaciones mapeado.' })]}
+>
+  <Breadcrumb current="Organización de Almacenes" />
+  <section class="hero" style="padding:48px 0 70px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> ORGANIZACIÓN DE ALMACENES</div>
+      <h1 style="font-size:44px;max-width:760px">Organización de Almacenes</h1>
+      <p class="hero-sub" style="max-width:640px">Del desorden al control: mapeamos, codificamos y ponemos un sistema donde antes solo había criterio individual y memoria de operadores.</p>
+      <div class="hero-ctas"><a href="#contacto" class="btn btn-primary">Solicitar diagnóstico gratuito</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">Problemas que resolvemos</div>
+        <h2>"Nadie sabe dónde está nada"</h2>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><h3>Dependencia de personas clave</h3><p>Si se va el que "sabe dónde está todo", se cae la operación. El conocimiento no está en ningún sistema.</p></div>
+        <div class="p-card warn"><h3>Sin zonas ni sectores definidos</h3><p>Mercadería de distintos procesos mezclada en el mismo espacio físico, sin criterio de separación.</p></div>
+        <div class="p-card warn"><h3>Control de acceso inexistente</h3><p>Cualquiera entra y saca mercadería sin registro de quién, cuándo ni por qué.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Resultados esperables</div><h2>Lo que cambia después de la consultoría</h2></div>
+      <KpiRow items={[{n:'100%',l:'Zonas mapeadas'},{n:'0',l:'Dependencia de memoria'},{n:'Documentado',l:'Cada proceso'}]} />
+      <div class="case-card" style="max-width:640px">
+        <div class="case-head"><div><span class="case-industry">Manufactura</span><h3>San Justo Iluminación</h3></div><span class="case-status">Mapeo completo</span></div>
+        <p class="case-problem">Depósito sin división por zonas de proceso, carga manual secuencial, stock en negativo.</p>
+        <p class="case-solution"><strong>Solución:</strong> mapeo de estanterías por sectores y control de acceso al almacén.</p>
+        <div class="case-result"><a href="/casos-de-exito/san-justo-iluminacion" style="color:var(--blue)">→ Ver caso completo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Preguntas frecuentes</div><h2>Sobre la organización de almacenes</h2></div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría relacionada</div><h2>Otras líneas de trabajo</h2></div>
+      <RelatedServices exclude="/organizacion-almacenes" />
+    </div>
+  </section>
+
+  <CtaBanner heading="¿Tu almacén es un desorden?" sub="Agendá un diagnóstico gratuito de 30 minutos y empezamos por entender qué hay y por qué está ahí." />
+</Layout>

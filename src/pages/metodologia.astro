@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+---
+<Layout
+  title="Metodología | CDI Consultoría"
+  description="Nuestra metodología de consultoría en 5 pasos: relevamiento, diseño, implementación, capacitación y acompañamiento. De diagnóstico a operación."
+  keywords="metodología de consultoría logística, proceso de consultoría de depósitos"
+>
+  <Breadcrumb current="Metodología" section={null} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <h1 style="font-size:40px;max-width:760px">De diagnóstico a operación en cinco pasos</h1>
+      <p class="hero-sub" style="max-width:640px">No vendemos equipos y nos vamos. Nos quedamos hasta que tu depósito funcione solo.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="method-grid">
+        <div class="pipeline">
+          <div class="p-step"><div class="num">PASO 01</div><h4>Relevamiento y diagnóstico</h4><p>Mapeamos los flujos actuales, identificamos fugas y cuellos de botella. Entregamos un informe con hallazgos priorizados.</p><span class="dur">2–4 semanas</span></div>
+          <div class="p-step"><div class="num">PASO 02</div><h4>Diseño de flujos y codificación</h4><p>Definimos la codificación de barras/QR/RFID para cada SKU, ubicación y lote.</p><span class="dur">3–4 semanas</span></div>
+          <div class="p-step"><div class="num">PASO 03</div><h4>Implementación tecnológica</h4><p>Configuramos lectores, colectores, impresoras y software. Piloto antes de escalar.</p><span class="dur">4–8 semanas</span></div>
+          <div class="p-step"><div class="num">PASO 04</div><h4>Capacitación del personal</h4><p>Talleres prácticos, manual de procedimientos y certificación de operadores.</p><span class="dur">2–3 semanas</span></div>
+          <div class="p-step"><div class="num">PASO 05</div><h4>Acompañamiento y optimización</h4><p>Seguimiento mensual, ajustes de procesos, inventarios cíclicos.</p><span class="dur">6–12 meses (opcional)</span></div>
+        </div>
+        <aside class="method-visual">
+          <h3>Alcance de la primera etapa</h3>
+          <ul class="scope-list">
+            <li><span class="ok">✓</span> Planificación del proyecto y cronograma</li>
+            <li><span class="ok">✓</span> Relevamiento inicial de procesos</li>
+            <li><span class="ok">✓</span> Identificación de oportunidades de mejora</li>
+            <li><span class="ok">✓</span> Análisis de recursos (hardware, software, RRHH)</li>
+            <li><span class="ok">✓</span> Análisis de presupuesto necesario</li>
+            <li><span class="ok">✓</span> Plan de acción alineado a objetivos</li>
+            <li><span class="ok">✓</span> Entrega de informe ejecutivo</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</Layout>

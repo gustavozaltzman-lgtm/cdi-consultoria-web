@@ -1,0 +1,15 @@
+---
+interface Props { heading?: string; sub?: string; }
+const { heading = '¿Listo para dejar de perder mercadería?', sub = 'Agendá una consulta gratuita de 30 minutos. Analizamos tu situación actual y te mostramos el plan de acción.' } = Astro.props;
+---
+<section class="cta-section" id="contacto">
+  <div class="container">
+    <h2>{heading}</h2>
+    <p>{sub}</p>
+    <form class="cta-form" action="#" method="POST">
+      <input type="email" name="email" placeholder="Tu email corporativo" required aria-label="Email corporativo">
+      <button type="submit" class="btn btn-primary">Agendar diagnóstico</button>
+    </form>
+    <p class="cta-note">+54 11 5895-6886 · info@cdinet.com.ar · Pizarro 5201, CABA</p>
+  </div>
+</section>

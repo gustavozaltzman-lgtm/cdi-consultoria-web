@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { articleSchema } from '../../lib/schema.js';
+---
+<Layout
+  title="Caso de éxito: Bustin | CDI Consultoría"
+  description="Cómo ayudamos a Bustin (distribución) a reemplazar un sistema Presea rígido por ubicaciones dinámicas, con un piloto de validación antes de escalar."
+  keywords="caso de éxito Bustin, consultoría de depósitos distribución"
+  jsonLd={[articleSchema({ headline: 'Cómo Bustin pasó de ubicaciones fijas a un esquema dinámico por zonas', about: 'Consultoría de depósitos', client: 'Bustin', datePublished: '2024-01-01' })]}
+>
+  <Breadcrumb current="Bustin" section={{ label: 'Casos de éxito', href: '/casos-de-exito' }} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <span class="case-industry" style="display:inline-block;margin-bottom:14px">Distribución</span>
+      <h1 style="font-size:40px;max-width:760px">Bustin</h1>
+      <p class="hero-sub" style="max-width:640px">De un sistema rígido sin interacción con lectores, a ubicaciones dinámicas por zonas y clases de producto.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container prose">
+      <h2>El problema</h2>
+      <p>Bustin operaba con Presea, un sistema demasiado rígido y sin interacción con lectores de códigos de barras. Las ubicaciones fijas por celda tenían una alta carga de mantenimiento y no se adaptaban a una operación dinámica y heterogénea, donde el mix de productos cambia constantemente.</p>
+      <h2>La solución</h2>
+      <p>Evaluamos alternativas ágiles y escalables junto al equipo de Bustin, y propusimos un esquema de ubicaciones dinámicas por zonas y clases de producto, en lugar de celdas fijas. Antes de escalar el cambio a todo el depósito, implementamos un piloto de validación en un sector acotado.</p>
+      <h2>El resultado</h2>
+      <p>El piloto está en curso, con las ubicaciones dinámicas ya implementadas en el sector definido y en proceso de evaluación antes de extenderlo al resto del depósito.</p>
+      <div class="case-result" style="display:inline-block;margin-top:10px">✓ Piloto en curso · Ubicaciones dinámicas implementadas</div>
+      <p style="margin-top:32px"><a href="/optimizacion-depositos" style="color:var(--blue)">→ Conocé nuestra consultoría de optimización de depósitos</a></p>
+    </div>
+  </section>
+  <CtaBanner heading="¿Tu sistema te impone un modelo rígido?" />
+</Layout>

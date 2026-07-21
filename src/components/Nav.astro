@@ -1,0 +1,31 @@
+---
+const path = Astro.url.pathname;
+const isActive = (href) => path === href;
+const links = [
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/metodologia', label: 'Metodología' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/casos-de-exito', label: 'Casos' },
+  { href: '/faq', label: 'FAQ' },
+];
+---
+<nav class="nav" role="navigation" aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href="/" class="logo"><span class="dot"></span> CDI Consultoría</a>
+    <ul class="nav-links" id="navLinks">
+      {links.map(l => (
+        <li><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a></li>
+      ))}
+      <li><a href="/contacto" class="nav-cta">Diagnóstico →</a></li>
+    </ul>
+    <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false">MENU</button>
+  </div>
+</nav>
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinksEl = document.getElementById('navLinks');
+  menuBtn?.addEventListener('click', () => {
+    const open = navLinksEl.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+</script>

@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+<Layout
+  title="Contacto | CDI Consultoría"
+  description="Contactá a CDI Consultoría para un diagnóstico gratuito de consultoría logística, de depósitos o de inventarios. Oficinas en Argentina y Uruguay."
+  keywords="contacto consultoría logística, contacto CDI Consultoría Argentina Uruguay"
+>
+  <Breadcrumb current="Contacto" section={null} />
+  <section class="cta-section" id="contacto" style="background:var(--bg);border-top:none">
+    <div class="container">
+      <h2>¿Listo para dejar de perder mercadería?</h2>
+      <p>Agendá una consulta gratuita de 30 minutos. Analizamos tu situación actual y te mostramos cómo ordenar tu depósito e inventario.</p>
+      <form class="cta-form" action="#" method="POST">
+        <input type="email" name="email" placeholder="Tu email corporativo" required aria-label="Email corporativo">
+        <button type="submit" class="btn btn-primary">Agendar diagnóstico</button>
+      </form>
+      <p class="cta-note">
+        Argentina: +54 11 5895-6886 · info@cdinet.com.ar · Pizarro 5201, CABA<br>
+        Uruguay: +59 8973-42220 · uruguay@cdinet.com.ar · Sarandí 256, Montevideo
+      </p>
+    </div>
+  </section>
+</Layout>

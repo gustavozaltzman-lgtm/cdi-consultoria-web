@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import KpiRow from '../components/KpiRow.astro';
+import Faq from '../components/Faq.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema, serviceSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Por qué empezar por código de barras y no por un sistema más avanzado?', a: 'Porque es la base de todo control de inventario: sin identificación unívoca de cada SKU y ubicación, ningún sistema —por más avanzado que sea— tiene datos confiables para trabajar.' },
+  { q: '¿Qué tipo de etiquetas usan?', a: 'Papel térmico, sintético, para metales, textiles o frío, según la necesidad del producto. Siempre GS1 compliant, con código + descripción + serie y datos adicionales si hace falta.' },
+  { q: '¿El código de barras alcanza o siempre hace falta RFID después?', a: 'En la mayoría de los casos el código de barras alcanza. Recomendamos RFID solo cuando el volumen de lectura lo justifica — lo evaluamos en el diagnóstico, no de entrada.' },
+];
+---
+<Layout
+  title="Código de Barras para Inventarios | CDI Consultoría"
+  description="Código de barras como base de todo control de inventario: diseño de codificación, etiquetado GS1 compliant e implementación en ingresos, ubicaciones, picking y egresos."
+  keywords="código de barras inventarios, código de barras depósito, etiquetado GS1, codificación de stock"
+  jsonLd={[faqSchema(faqs), serviceSchema({ name: 'Código de Barras para Inventarios', description: 'Diseño e implementación de codificación por código de barras para control de stock, GS1 compliant.' })]}
+>
+  <Breadcrumb current="Código de Barras para Inventarios" />
+  <section class="hero" style="padding:48px 0 70px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> CÓDIGO DE BARRAS PARA INVENTARIOS</div>
+      <h1 style="font-size:44px;max-width:760px">Código de Barras para Inventarios</h1>
+      <p class="hero-sub" style="max-width:640px">La base de todo control de stock. Diseñamos la codificación de SKUs, ubicaciones y lotes, e implementamos el etiquetado en cada punto del flujo de mercadería.</p>
+      <div class="hero-ctas"><a href="#contacto" class="btn btn-primary">Solicitar diagnóstico gratuito</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">Problemas que resolvemos</div>
+        <h2>"No tenemos forma de identificar la mercadería"</h2>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><h3>Productos sin identificación unificada</h3><p>Mercadería importada y de fabricación propia, cada una con su propio criterio de código.</p></div>
+        <div class="p-card warn"><h3>Sin control en expedición</h3><p>La mercadería sale del depósito sin verificación contra remito ni orden de venta.</p></div>
+        <div class="p-card warn"><h3>Etiquetas que no resisten el uso</h3><p>Papel común en ambientes de frío, metal o intemperie que se despega o ilegible en días.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Resultado</div><h2>Cómo lo resolvemos</h2></div>
+      <KpiRow items={[{n:'GS1',l:'Compliant'},{n:'100%',l:'SKUs identificados'},{n:'Integrado',l:'A tu ERP existente'}]} />
+      <div class="case-card" style="max-width:640px">
+        <div class="case-head"><div><span class="case-industry">Mayorista</span><h3>A. Sabbatini e Hijos</h3></div><span class="case-status">Integrado</span></div>
+        <p class="case-problem">Productos importados y de fabricación propia sin identificación unificada, sin control en expedición.</p>
+        <p class="case-solution"><strong>Solución:</strong> etiquetado con descripción + código + serie, integrado al sistema Keops existente.</p>
+        <div class="case-result"><a href="/casos-de-exito/sabbatini" style="color:var(--blue)">→ Ver caso completo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Preguntas frecuentes</div><h2>Sobre código de barras para inventarios</h2></div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría relacionada</div><h2>Otras líneas de trabajo</h2></div>
+      <RelatedServices exclude="/codigo-de-barras-inventarios" />
+    </div>
+  </section>
+
+  <CtaBanner heading="¿Tu mercadería no tiene identificación unificada?" sub="Agendá un diagnóstico gratuito de 30 minutos y diseñamos la codificación correcta para tu operación." />
+</Layout>

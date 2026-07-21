@@ -1,0 +1,77 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  jsonLd?: object[];
+}
+
+const { title, description, keywords, jsonLd = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString().replace(/\/$/, '') || Astro.site;
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://cdinet.com.ar/#organization",
+  "name": "CDI Consultoría",
+  "alternateName": ["CDI", "SZNET"],
+  "description": "Consultoría en logística, depósitos e inventarios. Ayudamos a empresas a ordenar depósitos, mejorar la exactitud de inventario e implementar código de barras y RFID como herramientas de control, no como fin en sí mismo.",
+  "foundingDate": "1992",
+  "slogan": "Consultores de depósito, no vendedores de hardware",
+  "url": "https://cdinet.com.ar/",
+  "areaServed": [
+    {"@type": "Country", "name": "Argentina"},
+    {"@type": "Country", "name": "Uruguay"}
+  ],
+  "knowsAbout": ["Consultoría logística", "Consultoría de depósitos", "Consultoría de inventarios", "Auditoría de inventarios", "Optimización de depósitos", "Organización de almacenes", "Exactitud de inventario", "Implementación de WMS", "RFID", "Código de barras"],
+  "address": [
+    {"@type": "PostalAddress", "streetAddress": "Pizarro 5201", "addressLocality": "CABA", "addressCountry": "AR"},
+    {"@type": "PostalAddress", "streetAddress": "Sarandí 256", "addressLocality": "Montevideo", "addressCountry": "UY"}
+  ],
+  "telephone": ["+54-11-5895-6886", "+598-97342220"],
+  "email": "info@cdinet.com.ar",
+  "sameAs": ["https://cdinet.com.ar", "https://sznet.com.ar"]
+};
+
+const allSchemas = [organizationSchema, ...jsonLd];
+---
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+{keywords && <meta name="keywords" content={keywords}>}
+<meta name="robots" content="index, follow">
+<meta name="author" content="CDI Consultoría">
+<link rel="canonical" href={canonical}>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="CDI Consultoría">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonical}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+{allSchemas.map(schema => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+<Nav />
+<main id="main">
+<slot />
+</main>
+<Footer />
+</body>
+</html>

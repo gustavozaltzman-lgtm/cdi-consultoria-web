@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Faq from '../components/Faq.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Qué es una consultoría de toma de inventario?', a: 'Es el servicio de relevamiento, conteo y control periódico del stock de una empresa, para que el inventario físico coincida con el sistema en tiempo real. Diseñamos e implementamos inventarios cíclicos con colectores de datos, código de barras y RFID, con hasta 99.9% de precisión y sin paralizar la operación.' },
+  { q: '¿En qué consiste una consultoría de depósitos?', a: 'Relevamos el flujo real de mercadería —ingresos, ubicaciones, picking y egresos— e implementamos un esquema de codificación de racks, pasillos y posiciones para ubicar cualquier SKU en segundos, adaptado a tu operación real y sin modelos rígidos.' },
+  { q: '¿Qué hace una consultoría logística?', a: 'Analiza cómo se mueve la mercadería a lo largo de toda la cadena —recepción, almacenamiento, preparación de pedidos y despacho— e implementa control por código de barras, QR o RFID para eliminar errores, reducir tiempos y dar trazabilidad completa a cada movimiento de mercadería.' },
+  { q: '¿Cómo ayudan con el movimiento de mercadería?', a: 'Implementamos verificación por escaneo en cada punto donde la mercadería cambia de estado: ingreso contra orden de compra, cambio de ubicación, picking y egreso contra remito. Esto genera trazabilidad completa de quién movió qué, cuándo y hacia dónde.' },
+  { q: 'Mi inventario nunca coincide, ¿qué hago?', a: 'Empezamos por entender el origen del desfasaje (carga manual, bajas no registradas, mermas) con una auditoría o un relevamiento inicial, antes de proponer inventarios cíclicos con colectores de datos.' },
+  { q: 'El depósito es un desorden, ¿por dónde empiezo?', a: 'Por un relevamiento físico de qué hay y dónde está. Después diseñamos la codificación de racks, pasillos y posiciones — organizar sin relevar antes solo mueve el desorden de lugar.' },
+  { q: '¿Inventarios cíclicos o inventario anual?', a: 'El inventario anual paraliza el depósito varios días y solo muestra una foto por año. El inventario cíclico cuenta porciones del stock de forma rotativa, sin cerrar la operación, y detecta discrepancias mucho antes.' },
+  { q: '¿Cómo reduzco errores de picking?', a: 'Con verificación por escaneo en cada paso del picking (por zona, onda, pedido o batch), en vez de listas impresas y memoria. Es uno de los cambios con impacto más rápido y medible.' },
+  { q: '¿Trabajan con empresas en Argentina y Uruguay?', a: 'Sí. Tenemos oficinas y operación activa en Argentina (CABA) y Uruguay (Montevideo), y trabajamos con clientes de industria, alimentos, automotriz, e-commerce, distribución y mayoristas en ambos países.' },
+  { q: '¿Cuánto dura un proyecto de consultoría con CDI?', a: 'La primera etapa (relevamiento y diagnóstico) dura entre 5 y 6 meses. La segunda etapa (implementación y acompañamiento) dura entre 6 y 8 meses, con acompañamiento continuo opcional de 6 a 12 meses adicionales.' },
+];
+---
+<Layout
+  title="Preguntas Frecuentes | CDI Consultoría"
+  description="Respuestas a las preguntas más comunes sobre consultoría de depósitos, inventarios y logística: inventario cíclico vs anual, errores de picking, exactitud de stock y más."
+  keywords="preguntas frecuentes consultoría logística, dudas control de stock"
+  jsonLd={[faqSchema(faqs)]}
+>
+  <Breadcrumb current="Preguntas frecuentes" section={null} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <h1 style="font-size:40px;max-width:760px">Preguntas frecuentes</h1>
+      <p class="hero-sub" style="max-width:640px">Todo lo que nos preguntan antes de pedir un diagnóstico gratuito.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container">
+      <Faq items={faqs} />
+    </div>
+  </section>
+  <CtaBanner />
+</Layout>

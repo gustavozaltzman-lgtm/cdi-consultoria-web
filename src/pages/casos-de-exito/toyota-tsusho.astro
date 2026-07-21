@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { articleSchema } from '../../lib/schema.js';
+---
+<Layout
+  title="Caso de éxito: Toyota Tsusho Argentina | CDI Consultoría"
+  description="Cómo ayudamos a Toyota Tsusho Argentina (automotriz) a lograr trazabilidad completa de piezas con etiquetado QR y auditorías de inventario."
+  keywords="caso de éxito Toyota Tsusho, consultoría de inventarios automotriz, trazabilidad RFID QR"
+  jsonLd={[articleSchema({ headline: 'Cómo Toyota Tsusho Argentina logró trazabilidad completa con QR', about: 'Exactitud de inventario', client: 'Toyota Tsusho Argentina', datePublished: '2024-01-01' })]}
+>
+  <Breadcrumb current="Toyota Tsusho Argentina" section={{ label: 'Casos de éxito', href: '/casos-de-exito' }} />
+  <section class="hero" style="padding:48px 0 40px">
+    <div class="container">
+      <span class="case-industry" style="display:inline-block;margin-bottom:14px">Automotriz</span>
+      <h1 style="font-size:40px;max-width:760px">Toyota Tsusho Argentina</h1>
+      <p class="hero-sub" style="max-width:640px">De conteos manuales en papel a trazabilidad completa de piezas con código QR.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container prose">
+      <h2>El problema</h2>
+      <p>Toyota Tsusho Argentina tenía inventarios distribuidos en múltiples proveedores dispersos, sin trazabilidad de piezas. Los conteos se hacían de forma manual con planillas de papel, y muchos módulos de rack no se abrían durante la auditoría, con verificación visual limitada.</p>
+      <h2>La solución</h2>
+      <p>Implementamos etiquetado con código QR propio de TTA, con escaneo mediante lectores portátiles. Digitalizamos las planillas de conteo con firma digital de las partes involucradas, y sumamos control de discrepancias entre cajas cerradas y abiertas.</p>
+      <h2>El resultado</h2>
+      <p>Los inventarios quedaron auditados con trazabilidad completa de piezas, y el sistema de QR está implementado en la operación de los proveedores.</p>
+      <div class="case-result" style="display:inline-block;margin-top:10px">✓ Inventarios auditados · Trazabilidad completa · QR implementado</div>
+      <p style="margin-top:32px"><a href="/exactitud-inventario" style="color:var(--blue)">→ Conocé cómo trabajamos la exactitud de inventario</a></p>
+    </div>
+  </section>
+  <CtaBanner heading="¿Tenés proveedores o depósitos sin trazabilidad?" />
+</Layout>

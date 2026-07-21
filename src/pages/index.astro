@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ConsoleLog from '../components/ConsoleLog.astro';
+import Faq from '../components/Faq.astro';
+import { faqSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Qué es una consultoría de toma de inventario?', a: 'Es el servicio de relevamiento, conteo y control periódico del stock de una empresa, para que el inventario físico coincida con el sistema en tiempo real. Diseñamos e implementamos inventarios cíclicos con colectores de datos, código de barras y RFID, con hasta 99.9% de precisión y sin paralizar la operación.' },
+  { q: '¿En qué consiste una consultoría de depósitos?', a: 'Relevamos el flujo real de mercadería —ingresos, ubicaciones, picking y egresos— e implementamos un esquema de codificación de racks, pasillos y posiciones para ubicar cualquier SKU en segundos, adaptado a tu operación real y sin modelos rígidos.' },
+  { q: '¿Qué hace una consultoría logística?', a: 'Analiza cómo se mueve la mercadería a lo largo de toda la cadena —recepción, almacenamiento, preparación de pedidos y despacho— e implementa control por código de barras, QR o RFID para eliminar errores, reducir tiempos y dar trazabilidad completa a cada movimiento de mercadería.' },
+  { q: '¿Trabajan con empresas en Argentina y Uruguay?', a: 'Sí. Tenemos oficinas y operación activa en Argentina (CABA) y Uruguay (Montevideo), y trabajamos con clientes de industria, alimentos, automotriz, e-commerce, distribución y mayoristas en ambos países.' },
+  { q: '¿Cuánto dura un proyecto de consultoría con CDI?', a: 'La primera etapa (relevamiento y diagnóstico) dura entre 5 y 6 meses. La segunda etapa (implementación y acompañamiento) dura entre 6 y 8 meses, con acompañamiento continuo opcional de 6 a 12 meses adicionales.' },
+];
+---
+<Layout
+  title="CDI Consultoría | Consultoría en Logística, Depósitos e Inventarios"
+  description="Consultoría en logística, depósitos e inventarios con más de 30 años de experiencia. Ordenamos depósitos, mejoramos la exactitud de inventario e implementamos código de barras y RFID como herramientas. Argentina y Uruguay."
+  keywords="consultoría logística, consultoría de depósitos, consultoría de inventarios, auditoría de inventarios, exactitud de inventario, organización de almacenes, movimiento de mercadería, código de barras, RFID, WMS"
+  jsonLd={[faqSchema(faqs)]}
+>
+  <section class="hero" aria-label="Introducción">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow"><span class="dot"></span> CONSULTORÍA DE LOGÍSTICA, DEPÓSITOS E INVENTARIOS · 30 AÑOS</div>
+          <h1>Consultoría en Logística, Depósitos e Inventarios</h1>
+          <p class="hero-sub">Más de 30 años ayudando a empresas a ordenar depósitos, mejorar inventarios e implementar tecnologías como código de barras y RFID. El código de barras y el RFID son herramientas de esta consultoría — el resultado es tu operación bajo control.</p>
+          <div class="hero-ctas">
+            <a href="/contacto" class="btn btn-primary">Solicitar diagnóstico gratuito</a>
+            <a href="/metodologia" class="btn btn-secondary">Ver metodología</a>
+          </div>
+        </div>
+        <ConsoleLog />
+      </div>
+    </div>
+  </section>
+
+  <div class="status-strip">
+    <div class="container">
+      <div class="status-row">
+        <div class="status-cell"><div class="n">30+</div><div class="l">Años de experiencia</div></div>
+        <div class="status-cell"><div class="n">2</div><div class="l">Países — AR / UY</div></div>
+        <div class="status-cell"><div class="n">6</div><div class="l">Rubros atendidos</div></div>
+        <div class="status-cell"><div class="n">99.9%</div><div class="l">Exactitud de inventario</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="nosotros">
+    <div class="container">
+      <div class="about-grid">
+        <img class="about-photo" src="/assets/foto-scanner-rack.png" alt="Consultor relevando un depósito" loading="lazy">
+        <div>
+          <div class="tag">Quiénes somos</div>
+          <h2 class="display" style="font-size:28px;font-weight:700;letter-spacing:-.01em;margin-bottom:18px;line-height:1.25">Consultores de depósito, no vendedores de hardware</h2>
+          <p style="color:var(--muted);font-size:15.5px;line-height:1.75">Desde 1992 ofrecemos <strong style="color:var(--text)">consultoría logística</strong>, <strong style="color:var(--text)">consultoría de depósitos</strong> y <strong style="color:var(--text)">consultoría de inventarios</strong> a empresas argentinas y uruguayas —industria, alimentos, automotriz, e-commerce— para que dejen de perder mercadería. Llegamos a entender cómo se mueve tu mercadería antes de proponer una sola etiqueta. El código de barras y el RFID son la herramienta; el objetivo es que tu operación quede bajo control.</p>
+          <ul class="about-points">
+            <li><span class="ok">✓</span> Consultores senior en cada proyecto, no juniors aprendiendo con tu operación</li>
+            <li><span class="ok">✓</span> Diseño a medida de tu flujo real, sin modelos rígidos prearmados</li>
+            <li><span class="ok">✓</span> Integración con el ERP/WMS que ya tenés</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">Nuestras consultorías</div>
+        <h2>Tres líneas de trabajo, un mismo objetivo: control</h2>
+        <p>Cada empresa entra por una puerta distinta. Estas son las tres formas más comunes en que empezamos a trabajar juntos.</p>
+      </div>
+      <div class="related-grid">
+        <a class="related-card" href="/consultoria-depositos" style="padding:22px"><div class="rt" style="font-size:17px;margin-bottom:8px">Consultoría de Depósitos</div><div class="rd" style="font-size:13.5px">Orden, flujo, ubicaciones y layout físico del depósito.</div></a>
+        <a class="related-card" href="/consultoria-inventarios" style="padding:22px"><div class="rt" style="font-size:17px;margin-bottom:8px">Consultoría de Inventarios</div><div class="rd" style="font-size:13.5px">Control de stock, conteos cíclicos y exactitud sostenida.</div></a>
+        <a class="related-card" href="/auditoria-inventarios" style="padding:22px"><div class="rt" style="font-size:17px;margin-bottom:8px">Auditoría de Inventarios</div><div class="rd" style="font-size:13.5px">Relevamiento puntual, informe y diagnóstico ejecutivo.</div></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="beneficios">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">Beneficios</div>
+        <h2>Ocho métricas que mejoran cuando ordenás tu operación</h2>
+        <p>No son promesas de folleto: son los efectos que medimos, relevamiento tras relevamiento.</p>
+      </div>
+      <div class="panel-grid g4">
+        <div class="p-card ok"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span class="stat">+</span></div><h3>Eficiencia</h3><p>Menos tiempo de proceso en cada movimiento de mercadería.</p></div>
+        <div class="p-card ok"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="var(--green)" stroke="none"/></svg><span class="stat">+</span></div><h3>Exactitud de inventario</h3><p>Menos errores humanos en ingresos, egresos e inventarios.</p></div>
+        <div class="p-card ok"><div class="meta"><img src="/assets/icon-inventario.png" alt="" style="width:34px;height:34px;border-radius:6px" loading="lazy"><span class="stat">+</span></div><h3>Gestión de inventario</h3><p>Fin de los inventarios paralizantes; control en tiempo real.</p></div>
+        <div class="p-card ok"><div class="meta"><img src="/assets/icon-integraciones.png" alt="" style="width:34px;height:34px;border-radius:6px" loading="lazy"><span class="stat">+</span></div><h3>Avance tecnológico</h3><p>Tecnología de punta como herramienta de la consultoría.</p></div>
+        <div class="p-card ok"><div class="meta"><img src="/assets/icon-reportes.png" alt="" style="width:34px;height:34px;border-radius:6px" loading="lazy"><span class="stat">+</span></div><h3>Trazabilidad</h3><p>Seguimiento y decisiones basadas en datos reales.</p></div>
+        <div class="p-card ok"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18"/><line x1="9" y1="7" x2="9" y2="7.01"/><line x1="15" y1="7" x2="15" y2="7.01"/><line x1="9" y1="11" x2="9" y2="11.01"/><line x1="15" y1="11" x2="15" y2="11.01"/></svg><span class="stat">+</span></div><h3>Imagen corporativa</h3><p>Mejora de la imagen ante clientes y proveedores.</p></div>
+        <div class="p-card ok"><div class="meta"><img src="/assets/icon-seguridad.png" alt="" style="width:34px;height:34px;border-radius:6px" loading="lazy"><span class="stat">+</span></div><h3>Control y auditoría</h3><p>Facilita auditorías internas con respaldo documental.</p></div>
+        <div class="p-card ok"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12.5 11 15 15.5 9.5"/></svg><span class="stat">+</span></div><h3>Reducción de errores</h3><p>Menos pérdidas en las operaciones diarias de depósito.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">¿Te suena familiar?</div>
+        <h2>Los problemas reales que resolvemos todos los días</h2>
+        <p>Esto es lo que nos preguntan antes de empezar: "mi inventario nunca coincide", "el depósito es un desorden", "cómo reduzco errores de picking".</p>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg><span class="stat">alerta</span></div><h3>Mi inventario nunca coincide</h3><p>Como le pasaba a <strong>Adama</strong> antes de los controles cíclicos. → <a href="/consultoria-inventarios" style="color:var(--blue)">Consultoría de inventarios</a></p></div>
+        <div class="p-card warn"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="8.5" y1="9" x2="8.51" y2="9"/><line x1="15.5" y1="9" x2="15.51" y2="9"/><path d="M8 16c1-1.5 2.5-2.3 4-2.3s3 .8 4 2.3"/></svg><span class="stat">alerta</span></div><h3>El depósito es un desorden</h3><p><strong>San Justo Iluminación</strong> movía 1.200 cajas diarias sin verificación. → <a href="/organizacion-almacenes" style="color:var(--blue)">Organización de almacenes</a></p></div>
+        <div class="p-card warn"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></svg><span class="stat">alerta</span></div><h3>Ingresos y egresos lentos</h3><p>Un camión espera 2 horas porque todo se anota a mano. → <a href="/optimizacion-depositos" style="color:var(--blue)">Optimización de depósitos</a></p></div>
+        <div class="p-card warn"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg><span class="stat">alerta</span></div><h3>Dependencia de personas clave</h3><p>Si se va el que "sabe dónde está todo", se cae la operación.</p></div>
+        <div class="p-card warn"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="1.5"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg><span class="stat">alerta</span></div><h3>El ERP propone un modelo rígido</h3><p>Como le pasó a <strong>Bustin</strong> con Presea y Neural Soft. → <a href="/implementacion-wms" style="color:var(--blue)">Implementación de WMS</a></p></div>
+        <div class="p-card warn"><div class="meta"><svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 6.5c0-2-2.2-3.5-5-3.5s-5 1.5-5 3.5 2.2 3 5 3 5 1.2 5 3.5-2.2 3.5-5 3.5-5-1.5-5-3.5"/></svg><span class="stat">alerta</span></div><h3>Stock en negativo</h3><p>Faltan unidades, sobran otras, hay productos vencidos escondidos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="casos">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">Prueba social</div>
+        <h2>Casos de éxito, con resultados concretos</h2>
+        <p>Cada cliente tiene una operación diferente. No vendemos un paquete estándar.</p>
+      </div>
+      <div class="case-grid">
+        <a class="case-card" href="/casos-de-exito/toyota-tsusho" style="text-decoration:none;display:block"><div class="case-head"><div><span class="case-industry">Automotriz</span><h3>Toyota Tsusho Argentina</h3></div><span class="case-status">Trazabilidad total</span></div><p class="case-problem">Inventarios en proveedores dispersos, sin trazabilidad de piezas.</p><div class="case-result">→ Ver caso completo</div></a>
+        <a class="case-card" href="/casos-de-exito/adama" style="text-decoration:none;display:block"><div class="case-head"><div><span class="case-industry">Alimentos</span><h3>Adama</h3></div><span class="case-status">99.9% exactitud</span></div><p class="case-problem">500 ton/mes sin ubicaciones específicas, inventarios inviables.</p><div class="case-result">→ Ver caso completo</div></a>
+        <a class="case-card" href="/casos-de-exito/san-justo-iluminacion" style="text-decoration:none;display:block"><div class="case-head"><div><span class="case-industry">Manufactura</span><h3>San Justo Iluminación</h3></div><span class="case-status">Mapeo completo</span></div><p class="case-problem">3.900 SKUs, 1.200 cajas diarias, stock en negativo.</p><div class="case-result">→ Ver caso completo</div></a>
+      </div>
+      <p style="margin-top:20px"><a href="/casos-de-exito" style="color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:13px">Ver los 6 casos de éxito completos →</a></p>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">Metodología</div>
+        <h2>De diagnóstico a operación en cinco pasos</h2>
+        <p>No vendemos equipos y nos vamos. Nos quedamos hasta que tu depósito funcione solo.</p>
+      </div>
+      <div class="related-grid">
+        <div class="related-card"><div class="rt">01–02 · Diagnóstico y diseño</div><div class="rd">Relevamiento de flujos y codificación a medida. 5–8 semanas.</div></div>
+        <div class="related-card"><div class="rt">03–04 · Implementación</div><div class="rd">Lectores, colectores y capacitación del equipo. 6–11 semanas.</div></div>
+        <div class="related-card"><div class="rt">05 · Acompañamiento</div><div class="rd">Seguimiento e inventarios cíclicos. 6–12 meses opcional.</div></div>
+      </div>
+      <p style="margin-top:20px"><a href="/metodologia" style="color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:13px">Ver la metodología completa →</a></p>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">Tecnología que aplicamos</div>
+        <h2>Código de barras, RFID y WMS son herramientas de esta consultoría</h2>
+        <p>No vendemos tecnología: la elegimos y la implementamos según lo que el diagnóstico determine que tu operación necesita.</p>
+      </div>
+      <div class="related-grid">
+        <a class="related-card" href="/codigo-de-barras-inventarios"><div class="rt">Código de Barras</div><div class="rd">La base de todo control de inventario, GS1 compliant.</div></a>
+        <a class="related-card" href="/rfid-depositos"><div class="rt">RFID en Depósitos</div><div class="rd">Trazabilidad automática sin línea de vista.</div></a>
+        <a class="related-card" href="/implementacion-wms"><div class="rt">Implementación de WMS</div><div class="rd">Integración con el ERP/WMS que ya tenés.</div></a>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="tag">Integramos con tu ERP o WMS existente</div>
+      <div class="int-row">
+        <span class="int-chip">SAP</span><span class="int-chip">Tango</span><span class="int-chip">Flexxus</span><span class="int-chip">Presea</span><span class="int-chip">Neural Soft</span><span class="int-chip">Adonix</span><span class="int-chip">Keops</span><span class="int-chip">Decano</span><span class="int-chip">Sistemas propios</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0">
+    <div class="gallery-grid">
+      <a href="/consultoria-depositos"><img src="/assets/galeria-ubicacion.png" alt="Escaneo de ubicación en rack" loading="lazy"><div class="tint"></div></a>
+      <a href="/consultoria-inventarios"><img src="/assets/galeria-estanteria.png" alt="Control de estantería en depósito" loading="lazy"><div class="tint"></div></a>
+      <a href="/exactitud-inventario"><img src="/assets/galeria-tablet.png" alt="Reportes en tiempo real en tablet" loading="lazy"><div class="tint"></div></a>
+    </div>
+  </section>
+
+  <section id="faq" style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">Preguntas frecuentes</div>
+        <h2>Todo sobre nuestra consultoría de depósitos y logística</h2>
+        <p>Las dudas más comunes de quienes nos contactan antes de pedir un diagnóstico gratuito.</p>
+      </div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="container">
+      <div class="tag" style="justify-content:center">Empresas que ya controlan su stock con nosotros</div>
+      <div class="client-row">
+        <span>Bardahl</span><span>Cantore S.A.</span><span>CHECA</span><span>McDonald's</span><span>ENARSA</span><span>Escandinavia</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2>¿Listo para dejar de perder mercadería?</h2>
+      <p>Agendá una consulta gratuita de 30 minutos. Analizamos tu situación actual y te mostramos cómo ordenar tu depósito e inventario.</p>
+      <form class="cta-form" action="#" method="POST">
+        <input type="email" name="email" placeholder="Tu email corporativo" required aria-label="Email corporativo">
+        <button type="submit" class="btn btn-primary">Agendar diagnóstico</button>
+      </form>
+      <p class="cta-note">+54 11 5895-6886 · info@cdinet.com.ar · Pizarro 5201, CABA</p>
+    </div>
+  </section>
+</Layout>

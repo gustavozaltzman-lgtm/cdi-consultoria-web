@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import KpiRow from '../components/KpiRow.astro';
+import Faq from '../components/Faq.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema, serviceSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿Una auditoría es lo mismo que la consultoría continua?', a: 'No. La auditoría es un diagnóstico puntual e independiente: relevamos, medimos y entregamos un informe ejecutivo con hallazgos. La consultoría continua implica acompañamiento en la implementación de los cambios.' },
+  { q: '¿Cuánto dura una auditoría de inventarios?', a: 'Entre 2 y 4 semanas, dependiendo del volumen de SKUs y la cantidad de depósitos a relevar.' },
+  { q: '¿Qué incluye el informe final?', a: 'Hallazgos priorizados, análisis de recursos existentes (hardware, software, RRHH), estimación de presupuesto necesario y un plan de acción alineado a tus objetivos de negocio.' },
+];
+---
+<Layout
+  title="Auditoría de Inventarios | CDI Consultoría"
+  description="Auditoría de inventarios independiente: relevamiento, diagnóstico e informe ejecutivo sobre el estado real de tu stock, sin compromiso de implementación."
+  keywords="auditoría de inventarios, auditoría de stock, diagnóstico de depósito, informe ejecutivo de inventario"
+  jsonLd={[faqSchema(faqs), serviceSchema({ name: 'Auditoría de Inventarios', description: 'Relevamiento y diagnóstico independiente del estado real del inventario, con informe ejecutivo.' })]}
+>
+  <Breadcrumb current="Auditoría de Inventarios" />
+  <section class="hero" style="padding:48px 0 70px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> AUDITORÍA DE INVENTARIOS</div>
+      <h1 style="font-size:44px;max-width:760px">Auditoría de Inventarios</h1>
+      <p class="hero-sub" style="max-width:640px">Un diagnóstico puntual e independiente de tu stock real, con informe ejecutivo, sin compromiso de implementación. Ideal antes de decidir una inversión mayor.</p>
+      <div class="hero-ctas"><a href="#contacto" class="btn btn-primary">Solicitar diagnóstico gratuito</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">Cuándo pedirla</div>
+        <h2>Señales de que necesitás una auditoría</h2>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><h3>Necesitás la verdad antes de invertir</h3><p>La dirección pide números confiables antes de aprobar un proyecto de sistemas o depósito.</p></div>
+        <div class="p-card warn"><h3>Sospechás pérdidas</h3><p>Los márgenes no cierran y no hay forma de saber si es error de proceso o algo más.</p></div>
+        <div class="p-card warn"><h3>Cambio de gestión</h3><p>Un nuevo responsable de depósito o logística necesita un punto de partida objetivo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Qué entregamos</div><h2>El resultado de la auditoría</h2></div>
+      <KpiRow items={[{n:'2–4',l:'Semanas de relevamiento'},{n:'1',l:'Informe ejecutivo'},{n:'0',l:'Compromiso de implementación'}]} />
+      <div class="case-card" style="max-width:640px">
+        <div class="case-head"><div><span class="case-industry">E-commerce</span><h3>Mercado Libre</h3></div><span class="case-status">Sistemático</span></div>
+        <p class="case-problem">Activos fijos dispersos en múltiples locations, sin conciliación centralizada.</p>
+        <p class="case-solution"><strong>Solución:</strong> cronograma de relevamiento por ubicación y conciliación contra listado oficial.</p>
+        <div class="case-result"><a href="/casos-de-exito/mercado-libre" style="color:var(--blue)">→ Ver caso completo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Preguntas frecuentes</div><h2>Sobre la auditoría de inventarios</h2></div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría relacionada</div><h2>Otras líneas de trabajo</h2></div>
+      <RelatedServices exclude="/auditoria-inventarios" />
+    </div>
+  </section>
+
+  <CtaBanner heading="¿Necesitás un diagnóstico objetivo?" sub="Agendá una consulta gratuita de 30 minutos y te contamos cómo trabaja nuestra auditoría." />
+</Layout>

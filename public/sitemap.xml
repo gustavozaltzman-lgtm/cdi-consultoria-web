@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://cdinet.com.ar/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://cdinet.com.ar/servicios</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cdinet.com.ar/consultoria-depositos</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cdinet.com.ar/consultoria-inventarios</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cdinet.com.ar/auditoria-inventarios</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cdinet.com.ar/optimizacion-depositos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cdinet.com.ar/organizacion-almacenes</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cdinet.com.ar/exactitud-inventario</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cdinet.com.ar/implementacion-wms</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/rfid-depositos</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/codigo-de-barras-inventarios</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/metodologia</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/nosotros</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://cdinet.com.ar/faq</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cdinet.com.ar/contacto</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://cdinet.com.ar/casos-de-exito</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cdinet.com.ar/casos-de-exito/bustin</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://cdinet.com.ar/casos-de-exito/san-justo-iluminacion</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://cdinet.com.ar/casos-de-exito/adama</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://cdinet.com.ar/casos-de-exito/toyota-tsusho</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://cdinet.com.ar/casos-de-exito/mercado-libre</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://cdinet.com.ar/casos-de-exito/sabbatini</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+</urlset>

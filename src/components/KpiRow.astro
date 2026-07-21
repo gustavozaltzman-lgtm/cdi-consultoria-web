@@ -1,0 +1,10 @@
+---
+interface Kpi { n: string; l: string; }
+interface Props { items: Kpi[]; }
+const { items } = Astro.props;
+---
+<div class="kpi-row">
+  {items.map(k => (
+    <div class="kpi"><div class="n">{k.n}</div><div class="l">{k.l}</div></div>
+  ))}
+</div>

@@ -1,0 +1,7 @@
+---
+interface Props { current: string; section?: { label: string; href: string } | null; }
+const { current, section = { label: 'Servicios', href: '/servicios' } } = Astro.props;
+---
+<div class="breadcrumb container">
+  <a href="/">Inicio</a><span>/</span>{section && <><a href={section.href}>{section.label}</a><span>/</span></>}{current}
+</div>

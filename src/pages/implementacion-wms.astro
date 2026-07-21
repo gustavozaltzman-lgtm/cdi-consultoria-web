@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import KpiRow from '../components/KpiRow.astro';
+import Faq from '../components/Faq.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { faqSchema, serviceSchema } from '../lib/schema.js';
+
+const faqs = [
+  { q: '¿CDI vende o desarrolla un WMS propio?', a: 'No. Evaluamos e implementamos el sistema que mejor se adapte a tu operación real, sea un WMS de mercado o el módulo de tu ERP existente. El sistema es una herramienta, no el objetivo del proyecto.' },
+  { q: '¿Qué pasa si el WMS que tenemos no se adapta a nuestra operación?', a: 'Es uno de los problemas más comunes que vemos: sistemas que proponen ubicaciones fijas y no contemplan el escaneo físico real. En esos casos rediseñamos el proceso alrededor del sistema existente antes de recomendar un cambio.' },
+  { q: '¿Cuánto dura una implementación de WMS?', a: 'La configuración de lectores, colectores e integración suele tomar entre 4 y 8 semanas, con un piloto antes de escalar a toda la operación.' },
+];
+---
+<Layout
+  title="Implementación de WMS | CDI Consultoría"
+  description="Implementación de WMS como herramienta de una consultoría logística: elegimos e integramos el sistema correcto para tu operación real, sin imponer modelos rígidos."
+  keywords="implementación de WMS, sistema de gestión de almacenes, WMS depósito, integración WMS ERP"
+  jsonLd={[faqSchema(faqs), serviceSchema({ name: 'Implementación de WMS', description: 'Evaluación e implementación de sistemas WMS integrados al ERP existente, adaptados a la operación real del cliente.' })]}
+>
+  <Breadcrumb current="Implementación de WMS" />
+  <section class="hero" style="padding:48px 0 70px">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span> IMPLEMENTACIÓN DE WMS</div>
+      <h1 style="font-size:44px;max-width:760px">Implementación de WMS</h1>
+      <p class="hero-sub" style="max-width:640px">El WMS es la herramienta, no el proyecto. Te ayudamos a elegir e implementar el sistema correcto para cómo tu mercadería se mueve de verdad — no al revés.</p>
+      <div class="hero-ctas"><a href="#contacto" class="btn btn-primary">Solicitar diagnóstico gratuito</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag" style="color:var(--amber)">Problemas que resolvemos</div>
+        <h2>"El sistema nos impone un modelo rígido"</h2>
+      </div>
+      <div class="panel-grid g3">
+        <div class="p-card warn"><h3>Ubicaciones fijas que no aplican</h3><p>El WMS propone celdas fijas con alta carga de mantenimiento que no reflejan la operación real.</p></div>
+        <div class="p-card warn"><h3>Sin integración con lectores</h3><p>El sistema no contempla el escaneo físico de mercadería en el proceso diario.</p></div>
+        <div class="p-card warn"><h3>Circuitos "estándar" que no calzan</h3><p>Los flujos predefinidos del sistema no se adaptan a una operación dinámica y heterogénea.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Resultado</div><h2>Cómo lo resolvemos</h2></div>
+      <KpiRow items={[{n:'Piloto',l:'Antes de escalar'},{n:'A medida',l:'De tu operación real'},{n:'Integrado',l:'Con tu ERP existente'}]} />
+      <div class="case-card" style="max-width:640px">
+        <div class="case-head"><div><span class="case-industry">Distribución</span><h3>Bustin</h3></div><span class="case-status">Piloto en curso</span></div>
+        <p class="case-problem">Sistema Presea rígido, sin interacción con lectores de códigos de barras. Ubicaciones fijas con alta carga de mantenimiento.</p>
+        <p class="case-solution"><strong>Solución:</strong> evaluación de alternativas ágiles y escalables, con piloto de validación antes de escalar.</p>
+        <div class="case-result"><a href="/casos-de-exito/bustin" style="color:var(--blue)">→ Ver caso completo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel-2)">
+    <div class="container">
+      <div class="section-header"><div class="tag">Preguntas frecuentes</div><h2>Sobre la implementación de WMS</h2></div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header"><div class="tag">Consultoría relacionada</div><h2>Otras líneas de trabajo</h2></div>
+      <RelatedServices exclude="/implementacion-wms" />
+    </div>
+  </section>
+
+  <CtaBanner heading="¿Tu WMS no se adapta a tu operación?" sub="Agendá un diagnóstico gratuito de 30 minutos y evaluamos juntos qué cambiar y qué no." />
+</Layout>
