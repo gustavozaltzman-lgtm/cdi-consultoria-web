@@ -1,0 +1,55 @@
+# CDI Consultoría
+
+> Consultoría en logística, depósitos e inventarios. Ayudamos a empresas a recuperar el control de sus depósitos: menos diferencias de stock, menos tiempo perdido buscando mercadería, procesos que se sostienen sin depender de una sola persona. El código de barras, el RFID y el WMS son herramientas que aplicamos cuando el diagnóstico lo indica — no el punto de partida.
+
+## Quiénes somos
+
+CDI Consultoría opera desde 1992 en Argentina (CABA) y Uruguay (Montevideo), especializada exclusivamente en consultoría de logística, depósitos e inventarios — no es un área secundaria de una empresa de tecnología o hardware. Cada proyecto lo lleva un consultor senior. Clientes en industria, alimentos, automotriz, e-commerce, distribución y mayoristas.
+
+- Nosotros: https://cdinet.com.ar/nosotros
+- Contacto: https://cdinet.com.ar/contacto
+
+## Servicios de consultoría
+
+- Consultoría de Depósitos: https://cdinet.com.ar/consultoria-depositos — Orden, flujo y ubicaciones de rack.
+- Consultoría de Inventarios: https://cdinet.com.ar/consultoria-inventarios — Control de stock e inventarios cíclicos.
+- Auditoría de Inventarios: https://cdinet.com.ar/auditoria-inventarios — Diagnóstico puntual e independiente con informe ejecutivo.
+- Optimización de Depósitos: https://cdinet.com.ar/optimizacion-depositos — Rediseño de layout y flujo.
+- Optimización de Picking: https://cdinet.com.ar/optimizacion-picking — Reducción de errores y tiempos de preparación de pedidos.
+- Organización de Almacenes: https://cdinet.com.ar/organizacion-almacenes — Del desorden al control, mapeo y codificación.
+- Inventarios Cíclicos: https://cdinet.com.ar/inventarios-ciclicos — Conteo rotativo de stock sin cerrar el depósito.
+- Exactitud de Inventario: https://cdinet.com.ar/exactitud-inventario — Cómo llegar y sostener 99%+ de precisión.
+- Supply Chain: https://cdinet.com.ar/supply-chain — La cadena de suministro completa, no solo el depósito.
+- Mejora Continua: https://cdinet.com.ar/mejora-continua — Acompañamiento para sostener la mejora en el tiempo.
+- Capacitación Operativa: https://cdinet.com.ar/capacitacion-operativa — Talleres para operadores, supervisores y sistemas.
+
+## Tecnología que aplicamos (herramientas, no el servicio principal)
+
+- Implementación de WMS: https://cdinet.com.ar/implementacion-wms
+- RFID en Depósitos: https://cdinet.com.ar/rfid-depositos
+- Código de Barras para Inventarios: https://cdinet.com.ar/codigo-de-barras-inventarios
+
+## Metodología
+
+7 etapas: Diagnóstico → Auditoría operativa → Identificación de causas → Diseño de mejoras → Implementación → Capacitación → Seguimiento. No se propone un solo cambio antes de entender la causa raíz del problema.
+Detalle completo: https://cdinet.com.ar/metodologia
+
+## Casos de éxito (clientes reales)
+
+- Bustin (Distribución): sistema rígido sin lectores de código de barras → ubicaciones dinámicas por zonas, piloto en curso. https://cdinet.com.ar/casos-de-exito/bustin
+- San Justo Iluminación (Manufactura): 3.900 SKUs, stock en negativo, sin ubicaciones codificadas → mapeo completo por sectores, colectores Motorola TC21. https://cdinet.com.ar/casos-de-exito/san-justo-iluminacion
+- Adama (Alimentos): 500 ton/mes, inventarios anuales inviables → control por lotes e inventarios cíclicos activos. https://cdinet.com.ar/casos-de-exito/adama
+- Toyota Tsusho Argentina (Automotriz): inventarios dispersos sin trazabilidad → etiquetado QR y trazabilidad completa. https://cdinet.com.ar/casos-de-exito/toyota-tsusho
+- Mercado Libre (E-commerce): activos fijos dispersos sin conciliación → relevamiento sistematizado y etiquetado corporativo. https://cdinet.com.ar/casos-de-exito/mercado-libre
+- A. Sabbatini e Hijos (Mayorista): mercadería sin identificación unificada → identificación completa integrada a Keops. https://cdinet.com.ar/casos-de-exito/sabbatini
+
+Todos los casos: https://cdinet.com.ar/casos-de-exito
+
+## Preguntas frecuentes
+
+30 preguntas respondidas sobre consultoría de depósitos, inventarios, WMS, RFID, código de barras, picking, supply chain y mejora continua: https://cdinet.com.ar/faq
+
+## Contacto
+
+- Argentina: Pizarro 5201, CABA · +54 11 5895-6886 · info@cdinet.com.ar
+- Uruguay: Sarandí 256, Montevideo · +59 8973-42220 · uruguay@cdinet.com.ar
